@@ -45,7 +45,8 @@ const IMAGE_MODEL = bible.imageModel || 'nano-banana-pro';
 const IMG = IMAGE_MODELS[IMAGE_MODEL];
 const VIDEO_MODEL = 'fal-ai/kling-video/v3/standard/image-to-video';
 const LIPSYNC_MODEL = 'minimax/h3-max/lip-sync/image-to-video';
-const PRICE = { videoPerSec: 0.084, lipsyncPerSec: 0.08 };
+const TALK_MODEL = 'fal-ai/sync-lipsync/v2'; // lip-sync applied to a MOVING clip: the man fires / works the gun while he speaks
+const PRICE = { videoPerSec: 0.084, lipsyncPerSec: 0.08, talkPerSec: 0.05 };
 const LIPSYNC_RES = '768P', LIPSYNC_MIN = 5.0, LIPSYNC_MAX = 14.8;
 const TTS_MODEL = bible.ttsModel || 'eleven_multilingual_v2';
 const ENT = bible.entities || {};
@@ -70,10 +71,10 @@ beats.forEach((b) => {
     s.id = `${b.id}_${k + 1}`;
     s.mode = DRAFT && s.mode !== 'still' ? 'still' : (s.mode || 'video');
     s.with = s.with || [];
-    if (s.mode === 'lipsync') {
-      if (k !== 0 || b.type !== 'dialogue') throw new Error(`shot ${s.id}: a lipsync shot must be the first shot of a dialogue beat`);
+    if (s.mode === 'lipsync' || s.mode === 'talk') {
+      if (k !== 0 || b.type !== 'dialogue') throw new Error(`shot ${s.id}: a ${s.mode} shot must be the first shot of a dialogue beat`);
       if (!s.with.includes(b.speaker)) s.with.unshift(b.speaker);
-      s.setup = s.setup || `cu-${b.speaker}-${s.set || 'x'}`; // every close-up of a speaker in a set shares one picture
+      s.setup = s.setup || `${s.mode === 'talk' ? 'talk' : 'cu'}-${b.speaker}-${s.set || 'x'}`; // every close-up of a speaker in a set shares one picture
     }
     for (const n of [s.set, ...s.with].filter(Boolean)) if (!ENT[n]) throw new Error(`shot ${s.id}: "${n}" is not in the bible`);
     if (!s.set && !s.with.some((n) => kindOf(n) === 'set')) warn(`${s.id}: no set named; the background will be invented`);
@@ -100,9 +101,10 @@ const lipsyncSeconds = (s) => Math.min(LIPSYNC_MAX, Math.max(LIPSYNC_MIN, s.len)
 const setups = () => new Set(allShots.map((s) => s.setup || s.id)).size;
 
 function estimate() {
-  const vid = allShots.filter((s) => s.mode === 'video'), lip = allShots.filter((s) => s.mode === 'lipsync');
-  const e = { images: setups() * IMG.price, video: vid.reduce((n, s) => n + clipSeconds(s), 0) * PRICE.videoPerSec, lipsync: lip.reduce((n, s) => n + lipsyncSeconds(s), 0) * PRICE.lipsyncPerSec };
-  e.total = e.images + e.video + e.lipsync;
+  const vid = allShots.filter((s) => s.mode === 'video'), lip = allShots.filter((s) => s.mode === 'lipsync'), talk = allShots.filter((s) => s.mode === 'talk');
+  const e = { images: setups() * IMG.price, video: vid.reduce((n, s) => n + clipSeconds(s), 0) * PRICE.videoPerSec, lipsync: lip.reduce((n, s) => n + lipsyncSeconds(s), 0) * PRICE.lipsyncPerSec,
+    talk: talk.reduce((n, s) => n + clipSeconds(s) * (PRICE.videoPerSec + PRICE.talkPerSec), 0) };
+  e.total = e.images + e.video + e.lipsync + e.talk;
   return e;
 }
 
@@ -114,7 +116,7 @@ if (PLAN) {
     for (const s of b.shots) log(`          ${s.id.padEnd(10)} ${s.mode.padEnd(8)} ${s.len.toFixed(1)}s  ${s.set || ''} ${s.with.join(',')}${s.setup ? `  [setup ${s.setup}]` : ''}`);
   }
   const e = estimate();
-  log(`estimated fal cost: images $${e.images.toFixed(2)} + video $${e.video.toFixed(2)} + lip-sync $${e.lipsync.toFixed(2)} = $${e.total.toFixed(2)}`);
+  log(`estimated fal cost: images $${e.images.toFixed(2)} + video $${e.video.toFixed(2)} + lip-sync $${e.lipsync.toFixed(2)} + talking clips $${e.talk.toFixed(2)} = $${e.total.toFixed(2)}`);
   const missing = [...new Set(allShots.flatMap((s) => [s.set, ...s.with]).filter(Boolean))].filter((n) => !has(master(n)));
   if (missing.length) log(`NOT YET IN THE BIBLE (run make-bible first): ${missing.join(', ')}`);
   process.exit(0);
@@ -310,6 +312,21 @@ await pool(shots.filter((s) => s.picture && s.mode !== 'still'), 3, async (s) =>
     const secs = clipSeconds(s), prompt = `${s.motion || s.shot}.${life ? ` Background life, subtle: ${life}.` : ''} Everything else stays exactly as in the starting frame. ${STYLE}`;
     const input = { prompt, start_image_url: dataUri(out(s.picture)), duration: String(secs), aspect_ratio: '16:9', generate_audio: false };
     s.clip = await makeClip(s, hash('video', VIDEO_MODEL, picKey, prompt, secs), input, VIDEO_MODEL, secs, PRICE.videoPerSec, 'video');
+  } else if (s.mode === 'talk') {
+    // 1) a moving clip of the speaker in action, exactly the beat's length; 2) his line lip-synced onto that clip.
+    const secs = clipSeconds(s), life = lifeOf(s);
+    const prompt = `${s.motion || s.shot}. He is speaking urgently the whole time, mouth clearly visible.${life ? ` Background life, subtle: ${life}.` : ''} Everything else stays exactly as in the starting frame. ${STYLE}`;
+    const raw = await makeClip({ ...s, id: `${s.id}_raw` }, hash('video', VIDEO_MODEL, picKey, prompt, secs), { prompt, start_image_url: dataUri(out(s.picture)), duration: String(secs), aspect_ratio: '16:9', generate_audio: false }, VIDEO_MODEL, secs, PRICE.videoPerSec, 'video');
+    if (!raw) { s.clip = null; return; }
+    const audio = out(`lipin_${s.id}.mp3`);
+    const key = hash('talk', TALK_MODEL, readJson(`${raw}.key`, null), readJson(out(`line_${s.beat.id}.mp3.key`), null), s.beat.lead);
+    let input = null;
+    if (!fresh(out(`clip_${s.id}.mp4`), key) && !failed[s.id]) {
+      ffmpeg(['-i', `line_${s.beat.id}.mp3`, '-af', `adelay=${Math.round(s.beat.lead * 1000)}:all=1,apad`, '-t', s.len.toFixed(3), '-ar', '44100', '-b:a', '128k', audio], OUT);
+      input = { video_url: await falUpload(raw, 'video/mp4'), audio_url: await falUpload(audio, 'audio/mpeg'), model: 'lipsync-2', sync_mode: 'cut_off' };
+    }
+    s.clip = await makeClip(s, key, input, TALK_MODEL, secs, PRICE.talkPerSec, 'talk');
+    if (!s.clip) s.clip = raw; // lip-sync refused: keep the moving clip, the line still plays over it
   } else {
     const secs = lipsyncSeconds(s), audio = out(`lipin_${s.id}.mp3`);
     const key = hash('lipsync', LIPSYNC_MODEL, picKey, readJson(out(`line_${s.beat.id}.mp3.key`), null), secs.toFixed(2), s.beat.lead);
@@ -407,7 +424,7 @@ assemble(buildTitles());
 
 const got = duration('final.mp4', OUT);
 Object.assign(report, { durationExpected: Number(total.toFixed(2)), durationActual: Number(got.toFixed(2)), durationOk: Math.abs(got - total) < 0.25,
-  shots: shots.length, pictures: byPicture.size, movingClips: shots.filter((s) => s.clip && s.mode === 'video').length, lipsyncClips: shots.filter((s) => s.clip && s.mode === 'lipsync').length,
+  shots: shots.length, pictures: byPicture.size, movingClips: shots.filter((s) => s.clip && s.mode === 'video').length, lipsyncClips: shots.filter((s) => s.clip && s.mode === 'lipsync').length, talkingClips: shots.filter((s) => s.clip && s.mode === 'talk').length,
   stillShots: shots.filter((s) => !s.clip).length, refused: failed, cost: { ...money.cost, total: money.total() } });
 writeJson(out('report.json'), report);
 log(`DONE -> out/${scene.slug}/final.mp4 (${got.toFixed(2)}s)  fal spend on this scene so far: $${money.total()}`);

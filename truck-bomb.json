@@ -245,7 +245,7 @@
       "tail": 0.2,
       "shots": [
         {
-          "mode": "lipsync",
+          "mode": "talk",
           "set": "TOWER",
           "angle": {
             "TOWER": 2
@@ -253,8 +253,9 @@
           "with": [
             "CONNORS"
           ],
-          "setup": "cu-CONNORS",
-          "shot": "close-up of CONNORS behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+          "setup": "talk-CONNORS",
+          "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of his mounted machine gun, sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
+          "motion": "he tracks the distant truck with the gun, adjusting his aim, glancing sideways at Boghadair as he speaks, jaw working"
         }
       ],
       "sfx": [
@@ -273,7 +274,7 @@
       "tail": 0.3,
       "shots": [
         {
-          "mode": "lipsync",
+          "mode": "talk",
           "set": "TOWER",
           "angle": {
             "TOWER": 2
@@ -281,8 +282,9 @@
           "with": [
             "BOGHADAIR"
           ],
-          "setup": "cu-BOGHADAIR",
-          "shot": "close-up of BOGHADAIR behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+          "setup": "talk-BOGHADAIR",
+          "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of his mounted machine gun, sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
+          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus"
         }
       ],
       "sfx": [
@@ -331,7 +333,7 @@
       "tail": 0.15,
       "shots": [
         {
-          "mode": "lipsync",
+          "mode": "talk",
           "set": "TOWER",
           "angle": {
             "TOWER": 2
@@ -339,8 +341,9 @@
           "with": [
             "BOGHADAIR"
           ],
-          "setup": "cu-BOGHADAIR",
-          "shot": "close-up of BOGHADAIR behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+          "setup": "talk-BOGHADAIR",
+          "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of his mounted machine gun, sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
+          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus"
         }
       ],
       "sfx": [
@@ -419,7 +422,7 @@
       "tail": 0.2,
       "shots": [
         {
-          "mode": "lipsync",
+          "mode": "talk",
           "set": "TOWER",
           "angle": {
             "TOWER": 2
@@ -427,8 +430,9 @@
           "with": [
             "CONNORS"
           ],
-          "setup": "cu-CONNORS",
-          "shot": "close-up of CONNORS behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+          "setup": "talk-CONNORS",
+          "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of his mounted machine gun, sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
+          "motion": "he tracks the distant truck with the gun, adjusting his aim, glancing sideways at Boghadair as he speaks, jaw working"
         }
       ],
       "sfx": [
@@ -447,7 +451,7 @@
       "tail": 0.15,
       "shots": [
         {
-          "mode": "lipsync",
+          "mode": "talk",
           "set": "TOWER",
           "angle": {
             "TOWER": 2
@@ -455,8 +459,9 @@
           "with": [
             "BOGHADAIR"
           ],
-          "setup": "cu-BOGHADAIR",
-          "shot": "close-up of BOGHADAIR behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+          "setup": "talk-BOGHADAIR",
+          "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of his mounted machine gun, sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
+          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus"
         }
       ],
       "sfx": [
@@ -506,7 +511,7 @@
       "lead": 0.6,
       "shots": [
         {
-          "mode": "lipsync",
+          "mode": "talk",
           "set": "TOWER",
           "angle": {
             "TOWER": 2
@@ -514,8 +519,9 @@
           "with": [
             "CONNORS"
           ],
-          "setup": "cu-CONNORS",
-          "shot": "close-up of CONNORS behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+          "setup": "talk-CONNORS",
+          "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of his mounted machine gun, sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
+          "motion": "he fires a short burst, the gun bucking, brass flying, smoke, then shouts across to Boghadair"
         }
       ],
       "sfx": [
@@ -535,7 +541,7 @@
       "lead": 0.8,
       "shots": [
         {
-          "mode": "lipsync",
+          "mode": "talk",
           "set": "TOWER",
           "angle": {
             "TOWER": 2
@@ -543,8 +549,9 @@
           "with": [
             "BOGHADAIR"
           ],
-          "setup": "cu-BOGHADAIR",
-          "shot": "close-up of BOGHADAIR behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+          "setup": "talk-BOGHADAIR",
+          "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of his mounted machine gun, sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
+          "motion": "he fires controlled bursts, the gun bucking, brass flying, smoke, speaking between bursts without taking his eye off the sights"
         }
       ],
       "sfx": [
