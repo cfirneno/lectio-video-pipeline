@@ -55,10 +55,13 @@ if (FIX) {
   fs.copyFileSync(master, path.join(DIR, name, `master_before_${Date.now()}.jpg`));
   fs.renameSync(tmp, master); fs.renameSync(`${tmp}.key`, `${master}.key`);
   for (const f of fs.readdirSync(path.join(DIR, name))) if (/^angle_/.test(f)) fs.rmSync(path.join(DIR, name, f), { force: true });
-  for (const [n, o] of Object.entries(bible.entities)) if (o.from === name || (o.uses || []).includes(name)) {
+  // Entities EDITED from this one (from) are cleared and remade. Entities that merely CONTAIN it
+  // (uses) keep their master - their identity is their own - and only lose their derived views.
+  for (const [n, o] of Object.entries(bible.entities)) {
     const d = path.join(DIR, n);
-    if (fs.existsSync(d)) for (const f of fs.readdirSync(d)) if (!/^master_before_/.test(f)) fs.rmSync(path.join(d, f), { force: true });
-    log(`${n}: cleared, it is built from ${name} and will be remade`);
+    if (!fs.existsSync(d)) continue;
+    if (o.from === name) { for (const f of fs.readdirSync(d)) if (!/^master_before_/.test(f)) fs.rmSync(path.join(d, f), { force: true }); log(`${n}: cleared, it is edited from ${name} and will be remade`); }
+    else if ((o.uses || []).includes(name)) { for (const f of fs.readdirSync(d)) if (/^angle_/.test(f)) fs.rmSync(path.join(d, f), { force: true }); log(`${n}: its views cleared, they include ${name}`); }
   }
   log(`${name}: master revised (${how.slice(0, 60)}...); its views cleared`);
 }
