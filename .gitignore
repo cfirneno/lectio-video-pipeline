@@ -1,4 +1,8 @@
 out/
-bible/
 *.log
 node_modules/
+bible/*/candidate_*
+bible/*/*.check.json
+bible/*/*.job.json
+bible/candidates.jpg
+bible/cost.json

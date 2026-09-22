@@ -95,7 +95,7 @@ if (ANGLES) {
     const master = path.join(DIR, name, 'master.jpg');
     if (!has(master)) { warn(`${name}: not approved yet, skipping angles`); continue; }
     // An angle file with a ".pinned" marker beside it was supplied by hand and is never regenerated.
-    (e.angles || []).forEach((angle, i) => { if (!has(path.join(DIR, name, `angle_${i + 1}.jpg.pinned`))) jobs.push({ name, e, angle, i: i + 1, master }); });
+    (e.angles || []).forEach((angle, i) => { if (!fs.existsSync(path.join(DIR, name, `angle_${i + 1}.jpg.pinned`))) jobs.push({ name, e, angle, i: i + 1, master }); });
   }
   await pool(jobs, 4, async ({ name, e, angle, i, master }) => {
     const uses = (e.uses || []).filter(approvedNow);
