@@ -106,11 +106,11 @@ async function cropRect(master, spec) {
     const pad = spec.pad ?? 0.3;
     r = { x: box.x - box.w * pad, y: box.y - box.h * pad, w: box.w * (1 + 2 * pad), h: box.h * (1 + 2 * pad) };
   }
-  // widen to 16:9 (in image fractions, assuming a 16:9 master), then clamp inside the picture
-  if (r.w / r.h < 1) r.w = r.h; if (r.w / r.h > 1) r.h = r.w; // square first, so tall things get room
-  r.w = Math.min(1, r.w); r.h = Math.min(1, r.h);
-  if (r.w < r.h) r.w = r.h; else r.h = r.w; // equal fractions == 16:9 on a 16:9 image
-  r.x = Math.max(0, Math.min(1 - r.w, r.x + (spec.crop ? 0 : (r.w - r.w) / 2))); r.y = Math.max(0, Math.min(1 - r.h, r.y));
+  // On a 16:9 master, equal width and height FRACTIONS give a 16:9 crop. Take the larger of the
+  // two, centre it on the thing, and keep it inside the picture.
+  const cx = r.x + r.w / 2, cy = r.y + r.h / 2;
+  const side = Math.min(1, Math.max(r.w, r.h, 0.2));
+  r = { w: side, h: side, x: Math.max(0, Math.min(1 - side, cx - side / 2)), y: Math.max(0, Math.min(1 - side, cy - side / 2)) };
   return r;
 }
 async function cropTo(master, file, spec, label) {
