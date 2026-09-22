@@ -117,6 +117,7 @@ if (missing.length) log(`still to approve: ${missing.join(', ')}`);
 // Continuity summary of everything checked.
 const bad = [];
 for (const name of Object.keys(bible.entities)) { const d = path.join(DIR, name); if (!fs.existsSync(d)) continue;
-  for (const f of fs.readdirSync(d).filter((x) => x.endsWith('.check.json'))) { const v = readJson(path.join(d, f), null); if (v && !v.ok) bad.push(`${name}/${f.replace('.check.json', '')}: ${v.problems.map((p) => `${p.entity} - ${p.issue}`).join('; ')}`); } }
+  // only report checks on pictures that are actually in use: masters and unpinned angles
+  for (const f of fs.readdirSync(d).filter((x) => x.endsWith('.check.json') && !x.startsWith('candidate_') && !fs.existsSync(path.join(d, x.replace('.check.json', '.pinned'))))) { const v = readJson(path.join(d, f), null); if (v && !v.ok) bad.push(`${name}/${f.replace('.check.json', '')}: ${v.problems.map((p) => `${p.entity} - ${p.issue}`).join('; ')}`); } }
 if (bad.length) { log(`CONTINUITY FAILURES (${bad.length}) - do not approve these:`); bad.forEach((b) => log('  ' + b)); } else log('continuity: every checked picture passed');
 log(`bible spend so far: $${money.total()}`);

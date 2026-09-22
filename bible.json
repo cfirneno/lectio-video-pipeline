@@ -26,7 +26,7 @@
     },
     "TOWER": {
       "kind": "set",
-      "look": "a wooden military guard tower in flat desert just inside a high perimeter blast wall of stacked HESCO barriers and sandbags, about forty feet tall: four braced timber legs with cross-bracing in three tiers, a zigzag stair up one side, and on top a large open-sided cabin about twelve feet square with a plank roof on corner posts and a chest-high sandbag parapet all round; inside the cabin two M2 .50 caliber heavy machine guns on pintle mounts point out over the parapet, with two soldiers standing behind them",
+      "look": "the guard tower that stands just inside the blast wall to the RIGHT of the gate in reference 1, seen close from ground level inside the base: a wooden tower about forty feet tall on four braced timber legs with a zigzag stair up one side, a large open-sided cabin on top with a plank roof on corner posts and a chest-high sandbag parapet all round, two M2 .50 caliber heavy machine guns on pintle mounts pointing out over the parapet with two soldiers behind them; the HESCO-and-sandbag blast wall and the gate visible beside it, no wire fence anywhere",
       "angles": [
         "wide exterior view from the ground, the whole tower from its legs to its roof, the two soldiers visible behind the two mounted guns",
         "interior view from inside the cabin: plank floor, roof posts, sandbag parapet and the two mounted heavy machine guns, the base's rooftops and the desert far below beyond the parapet"
