@@ -423,9 +423,11 @@ function assemble(titles) {
   else f.push('[key]anullsink');
   if (plain.length) { f.push(`${plain.join('')}amix=inputs=${plain.length}:normalize=0:duration=longest,apad,atrim=0:${T}[fx]`); mix.push('[fx]'); }
   f.push(`${mix.join('')}amix=inputs=${mix.length}:normalize=0:duration=first,alimiter=limit=0.95,loudnorm=I=-14:TP=-1.5:LRA=13[a]`);
-  f.push(titles ? '[0:v]ass=titles.ass[v]' : '[0:v]null[v]');
-  ffmpeg([...inputs, '-filter_complex', f.join(';'), '-map', '[v]', '-map', '[a]', '-c:v', 'libx264', '-crf', '18', '-preset', 'medium', '-pix_fmt', 'yuv420p', '-r', String(FPS),
-    '-c:a', 'aac', '-b:a', '192k', '-ar', '44100', '-t', T, '-movflags', '+faststart', 'final.mp4'], OUT);
+  // Two quick passes instead of one slow one: mix the sound to a file, then copy the already-encoded
+  // picture segments (no re-encode) and mux. Titles, when present, force a picture re-encode.
+  ffmpeg([...inputs, '-filter_complex', f.join(';'), '-map', '[a]', '-vn', '-c:a', 'aac', '-b:a', '192k', '-ar', '44100', '-t', T, 'mix.m4a'], OUT);
+  if (titles) ffmpeg(['-f', 'concat', '-safe', '0', '-i', 'segments.txt', '-i', 'mix.m4a', '-filter_complex', '[0:v]ass=titles.ass[v]', '-map', '[v]', '-map', '1:a', '-c:v', 'libx264', '-crf', '18', '-preset', 'fast', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-c:a', 'copy', '-t', T, '-movflags', '+faststart', 'final.mp4'], OUT);
+  else ffmpeg(['-f', 'concat', '-safe', '0', '-i', 'segments.txt', '-i', 'mix.m4a', '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'copy', '-t', T, '-movflags', '+faststart', 'final.mp4'], OUT);
 }
 
 shots.forEach((s, n) => makeSegment(s, n));
