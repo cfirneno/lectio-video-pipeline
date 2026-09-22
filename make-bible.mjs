@@ -50,10 +50,16 @@ if (FIX) {
   if (!e || !has(master)) { console.error(`--fix: ${name} has no approved master`); process.exit(1); }
   const prompt = `Reference 1 is ${name}. Edit it in place: keep exactly the same camera viewpoint, framing, layout and every element unchanged, except: ${how}.${bible.geography && e.kind !== 'person' && e.kind !== 'vehicle' ? ` Fixed geography: ${bible.geography}` : ''} ${bible.style}`;
   const tmp = path.join(DIR, name, 'master_fix.jpg');
-  const ok = await makeImage({ modelName: IMAGE_MODEL, file: tmp, key: hash(prompt, readJson(`${master}.key`, null), IMAGE_MODEL), prompt, refs: [master], charge: money.charge, log, warn });
+  // The revision is judged against the geography (not against the old picture, which is what we are changing)
+  // and retried with the complaint until it passes, so nothing is derived from a plate that breaks the rules.
+  const geoCheck = e.kind === 'person' || e.kind === 'vehicle' ? '' : (bible.geography || '');
+  const ok = await makeImage({ modelName: IMAGE_MODEL, file: tmp, key: hash(prompt, readJson(`${master}.key`, null), IMAGE_MODEL, 'v2'), prompt, refs: [master],
+    check: [{ name, kind: e.kind, look: e.look }], geography: geoCheck, transform: { [name]: how }, must: e.must || [], attempts: 4, charge: money.charge, log, warn });
   if (!ok) { console.error('--fix failed'); process.exit(1); }
+  const v = readJson(`${tmp}.check.json`, null);
+  if (v && !v.ok) { console.error(`--fix: the revised ${name} still breaks the rules after 4 attempts: ${v.problems.map((p) => p.issue).join('; ')}. Not applied.`); fs.rmSync(tmp, { force: true }); process.exit(1); }
   fs.copyFileSync(master, path.join(DIR, name, `master_before_${Date.now()}.jpg`));
-  fs.renameSync(tmp, master); fs.renameSync(`${tmp}.key`, `${master}.key`);
+  fs.renameSync(tmp, master); fs.renameSync(`${tmp}.key`, `${master}.key`); fs.rmSync(`${tmp}.check.json`, { force: true });
   for (const f of fs.readdirSync(path.join(DIR, name))) if (/^angle_/.test(f)) fs.rmSync(path.join(DIR, name, f), { force: true });
   // Entities EDITED from this one (from) are cleared and remade. Entities that merely CONTAIN it
   // (uses) keep their master - their identity is their own - and only lose their derived views.
@@ -61,6 +67,7 @@ if (FIX) {
     const d = path.join(DIR, n);
     if (!fs.existsSync(d)) continue;
     if (o.from === name) { for (const f of fs.readdirSync(d)) if (!/^master_before_/.test(f)) fs.rmSync(path.join(d, f), { force: true }); log(`${n}: cleared, it is edited from ${name} and will be remade`); }
+    else if (n === name) continue;
     else if ((o.uses || []).includes(name)) { for (const f of fs.readdirSync(d)) if (/^angle_/.test(f)) fs.rmSync(path.join(d, f), { force: true }); log(`${n}: its views cleared, they include ${name}`); }
   }
   log(`${name}: master revised (${how.slice(0, 60)}...); its views cleared`);
