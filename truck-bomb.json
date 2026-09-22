@@ -86,9 +86,7 @@
         {
           "mode": "video",
           "set": "TOWER",
-          "angle": {
-            "TOWER": 1
-          },
+          "angle": {},
           "with": [
             "CONNORS"
           ],
@@ -103,7 +101,7 @@
           "mode": "video",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "BOGHADAIR",
@@ -113,7 +111,7 @@
           "shot": "inside the tower cabin from behind the two men: both mounted guns pointing out over the parapet, Boghadair at the left gun scanning, the rooftops of the base and the road below",
           "motion": "Boghadair slowly sweeps his gun across the horizon; below, vehicles move and a soldier walks; clouds drift",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ],
@@ -224,9 +222,7 @@
         {
           "mode": "video",
           "set": "TOWER",
-          "angle": {
-            "TOWER": 1
-          },
+          "angle": {},
           "with": [
             "CONNORS"
           ],
@@ -238,7 +234,7 @@
           "mode": "video",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "CONNORS",
@@ -249,7 +245,7 @@
           "shot": "inside the cabin from the side: Connors dropping in behind the right-hand mounted gun and grabbing its spade grips, Boghadair already at the left gun, both facing out over the parapet",
           "motion": "he throws himself behind the gun, racks the charging handle and swings the barrel toward the road",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ]
@@ -265,7 +261,7 @@
           "mode": "talk",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "CONNORS",
@@ -275,7 +271,7 @@
           "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
           "motion": "he tracks the distant truck with the gun, adjusting his aim, glancing sideways at Boghadair as he speaks, jaw working",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ],
@@ -298,7 +294,7 @@
           "mode": "talk",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "BOGHADAIR",
@@ -308,7 +304,7 @@
           "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along its thick barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
           "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ],
@@ -362,7 +358,7 @@
           "mode": "talk",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "BOGHADAIR",
@@ -372,7 +368,7 @@
           "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along its thick barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
           "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ],
@@ -456,7 +452,7 @@
           "mode": "talk",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "CONNORS",
@@ -466,7 +462,7 @@
           "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
           "motion": "he tracks the distant truck with the gun, adjusting his aim, glancing sideways at Boghadair as he speaks, jaw working",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ],
@@ -489,7 +485,7 @@
           "mode": "talk",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "BOGHADAIR",
@@ -499,7 +495,7 @@
           "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along its thick barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
           "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ],
@@ -554,7 +550,7 @@
           "mode": "talk",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "CONNORS",
@@ -564,7 +560,7 @@
           "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
           "motion": "he fires a short burst, the gun bucking, brass flying, smoke, then shouts across to Boghadair",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ],
@@ -588,7 +584,7 @@
           "mode": "talk",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "BOGHADAIR",
@@ -598,7 +594,7 @@
           "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along its thick barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
           "motion": "he fires controlled bursts, the gun bucking, brass flying, smoke, speaking between bursts without taking his eye off the sights",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         }
       ],
@@ -639,7 +635,7 @@
           "mode": "video",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "CONNORS",
@@ -650,7 +646,7 @@
           "shot": "inside the cabin from the side: both men firing their mounted guns out over the parapet, big muzzle flashes, brass flying, smoke",
           "motion": "both guns hammer in bursts, the men shaking with the recoil, casings pouring onto the floor",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         },
         {
@@ -760,7 +756,7 @@
           "mode": "video",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "CONNORS",
@@ -771,7 +767,7 @@
           "shot": "inside the cabin: Connors shouting into a handheld military radio held to his mouth, one hand still on his gun; Boghadair firing beside him",
           "motion": "he yells into the radio, flinching with each burst",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         },
         {
@@ -814,7 +810,7 @@
           "mode": "video",
           "set": "LOCATION",
           "angle": {
-            "TOWER": 2,
+            "TOWER": 1,
             "LOCATION": 3
           },
           "with": [
@@ -829,7 +825,7 @@
           "mode": "video",
           "set": "TOWER",
           "angle": {
-            "TOWER": 2
+            "TOWER": 1
           },
           "with": [
             "BOGHADAIR",
@@ -839,7 +835,7 @@
           "shot": "extreme close-up of Boghadair's eye and cheek along the sights of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), steady, the barrel and muzzle out of focus ahead",
           "motion": "his eye holds on the sights, the gun fires, the muzzle flash lights his face",
           "must": [
-            "the M2 heavy machine gun exactly like the M2 reference, on its pintle post, the man's hands on its rear spade grips"
+            "the same gun and mount as the M2 reference, the man's hands on its rear grips"
           ]
         },
         {
@@ -897,9 +893,7 @@
         {
           "mode": "video",
           "set": "TOWER",
-          "angle": {
-            "TOWER": 1
-          },
+          "angle": {},
           "setup": "tower-blast",
           "shot": "wide shot from inside the base: the single guard tower by the opening in the wall hit by the blast wave, splintering, torn off its legs and thrown into the air amid sandbags and timber; the huts behind it flattened; there is only ONE tower in the base",
           "motion": "the blast wave slams the tower and it tumbles through the air with debris; roofs tear off the buildings behind",

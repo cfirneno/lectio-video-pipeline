@@ -183,13 +183,18 @@ if (ANGLES) {
     if (fresh(file, key)) continue;
     if (await cropTo(master, file, angle, `${name}/angle_${i}.jpg`)) stamp(file, key);
   }
-  await pool(jobs, 4, async ({ name, e, angle, i, master }) => {
-    const uses = (e.uses || []).filter(approvedNow);
-    const refs = [master, ...uses.map((u) => path.join(DIR, u, 'master.jpg'))];
+  await pool(jobs, 4, async ({ name, e, angle: angleSpec, i, master }) => {
+    // an angle may be { "text": "...", "lead": "M2" }: the named entity goes in as the FIRST reference
+    const angle = typeof angleSpec === 'object' ? angleSpec.text : angleSpec;
+    const lead = typeof angleSpec === 'object' && angleSpec.lead && approvedNow(angleSpec.lead) ? angleSpec.lead : null;
+    const uses = (e.uses || []).filter((u) => approvedNow(u) && u !== lead);
+    const refs = [...(lead ? [path.join(DIR, lead, 'master.jpg')] : []), master, ...uses.map((u) => path.join(DIR, u, 'master.jpg'))];
     // an angle is an edit of its own master, so it is judged only against the OTHER entities it must contain
-    const check = uses.map((u) => ({ name: u, kind: bible.entities[u].kind, look: bible.entities[u].look }));
+    const check = [...(lead ? [lead] : []), ...uses].map((u) => ({ name: u, kind: bible.entities[u].kind, look: bible.entities[u].look }));
     const geo = e.kind === 'person' || e.kind === 'vehicle' ? '' : (bible.geography || '');
-    const prompt = `Reference 1 is ${name}${uses.map((u, k) => `; reference ${k + 2} is ${u}`).join('')}. Re-photograph exactly the same ${e.kind === 'person' ? 'person' : e.kind === 'vehicle' ? 'vehicle' : 'place'} - every structure, object, material and colour unchanged, nothing added and nothing removed - from a new camera position: ${angle}.${geo ? ` Fixed geography: ${geo}` : ''} ${bible.style}`;
+    const names = [...(lead ? [lead] : []), name, ...uses];
+    const legend = names.map((n, k) => `reference ${k + 1} is ${n}`).join('; ');
+    const prompt = `${legend}. Re-photograph exactly the same ${e.kind === 'person' ? 'person' : e.kind === 'vehicle' ? 'vehicle' : 'place'} - every structure, object, material and colour unchanged, nothing added and nothing removed - from a new camera position: ${angle}.${geo ? ` Fixed geography: ${geo}` : ''} ${bible.style}`;
     await makeImage({ modelName: IMAGE_MODEL, file: path.join(dir(name), `angle_${i}.jpg`), key: hash(prompt, refs.map((f) => readJson(`${f}.key`, null)), IMAGE_MODEL, e.must), prompt: `${prompt}${(e.must || []).length ? ` The picture MUST show: ${e.must.join('; ')}.` : ''}`, refs, check, geography: geo, transform: e.transform || {}, must: e.must || [], charge: money.charge, log, warn });
   });
 }

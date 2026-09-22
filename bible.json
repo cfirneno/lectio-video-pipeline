@@ -74,11 +74,13 @@
         "M2"
       ],
       "angles": [
-        "the whole tower from its legs to its roof, seen from the ground a little closer",
-        "interior view from inside the cabin: plank floor, roof posts, sandbag parapet and the two mounted heavy machine guns (exactly like the M2 reference), the base's rooftops and the desert far below beyond the parapet"
+        {
+          "text": "interior view from inside the cabin: plank floor, roof posts, sandbag parapet, and two heavy machine guns EXACTLY like reference 1 (same gun, same mount) set on the parapet pointing out; the base's rooftops and the desert far below beyond the parapet",
+          "lead": "M2"
+        }
       ],
       "must": [
-        "two mounted M2 heavy machine guns exactly like the M2 reference, on pintle posts with rear spade grips, pointing out over the sandbag parapet"
+        "two heavy machine guns that are the same gun and the same mount as the M2 reference picture, on the parapet, pointing out"
       ]
     },
     "WRECK": {
