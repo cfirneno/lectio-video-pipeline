@@ -228,15 +228,24 @@ if (UNTIL === 'audio') { log('stopped after audio'); process.exit(0); }
 
 // The references handed to the image model for a shot: the set first, then people and vehicles.
 // Each one is the approved master (or a named angle of it), never a fresh invention.
+// A tight crop of a person's face from the master portrait, made once and cached beside it,
+// handed to the image model as an extra reference so the face is copied at a size it can see.
+function faceCrop(name) {
+  const src = master(name), dst = path.join(BIBLE, name, 'face.jpg');
+  if (!has(dst)) ffmpeg(['-i', src, '-vf', "crop='min(iw,ih)*0.55':'min(iw,ih)*0.55':'(iw-min(iw,ih)*0.55)/2':'ih*0.08',scale=768:768", '-q:v', '2', dst], BIBLE);
+  return dst;
+}
 function refsFor(s) {
-  const names = [...new Set([s.set, ...s.with].filter(Boolean))];
+  // people first: the model weights its first references most, and faces are what drift
+  const names = [...new Set([...s.with.filter((n) => kindOf(n) === 'person'), s.set, ...s.with].filter(Boolean))];
   const refs = [], legend = [], check = [];
   for (const n of names) {
     const file = s.angle?.[n] ? angleFile(n, s.angle[n]) : master(n);
     if (!has(file)) throw new Error(`${s.id}: bible/${n}/${path.basename(file)} is missing - run make-bible.mjs first`);
-    refs.push(file);
     const e = ENT[n];
+    refs.push(file);
     legend.push(`reference ${refs.length} is ${e.kind === 'set' ? 'the location' : e.kind === 'person' ? 'the person' : `the ${e.kind}`} ${n}`);
+    if (e.kind === 'person') { refs.push(faceCrop(n)); legend.push(`reference ${refs.length} is a close-up of ${n}'s face, to be matched exactly`); }
     check.push({ name: n, kind: e.kind, look: e.look });
   }
   return { refs, legend, check };
@@ -252,7 +261,7 @@ function shotPrompt(s, legend) {
   const life = lifeOf(s);
   return [
     legend.length ? `${legend.join('; ')}.` : '',
-    `Photograph a new shot in exactly this location with exactly these people and vehicles, changed in no detail (same faces, same clothing and gear, same construction, same colours, same weapons), only the camera has moved:`,
+    `Photograph a new shot in exactly this location with exactly these people and vehicles, changed in no detail (the SAME actors with the SAME faces as the reference portraits, same clothing and gear, same construction, same colours, same weapons), only the camera has moved:`,
     `${s.shot}.`,
     Object.keys(transformOf(s)).length ? `Deliberate changes in this shot: ${Object.entries(transformOf(s)).map(([k, v]) => `${k} is shown ${v}`).join('; ')}.` : '',
     people.length ? `People in this shot: ${people.join('; ')}.` : '',
