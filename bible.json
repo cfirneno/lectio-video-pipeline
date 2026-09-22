@@ -24,19 +24,24 @@
         "three-quarter rear view showing the heaped dump bed under its tarp"
       ]
     },
+    "M2": {
+      "kind": "prop",
+      "look": "an M2 .50 caliber heavy machine gun: a very large belt-fed machine gun with a long thick barrel, mounted on a pintle post, with two rear spade grips and a butterfly trigger between them, an ammunition can feeding a belt into its left side, standing on a sandbag parapet"
+    },
     "TOWER": {
       "kind": "set",
       "look": "the guard tower that stands just inside the blast wall to the RIGHT of the gate in reference 1, seen close from ground level inside the base: a wooden tower about forty feet tall on four braced timber legs with a zigzag stair up one side, a large open-sided cabin on top with a plank roof on corner posts and a chest-high sandbag parapet all round, two M2 .50 caliber heavy machine guns on pintle mounts pointing out over the parapet with two soldiers behind them; the HESCO-and-sandbag blast wall and the gate visible beside it, the opening in the wall blocked by two large military cargo trucks parked nose to tail",
       "angles": [
-        "wide exterior view from the ground, the whole tower from its legs to its roof, the two soldiers visible behind the two mounted guns",
-        "interior view from inside the cabin: plank floor, roof posts, sandbag parapet and the two mounted heavy machine guns, the base's rooftops and the desert far below beyond the parapet"
+        "wide exterior view from the ground, the whole tower from its legs to its roof",
+        "interior view from inside the cabin: plank floor, roof posts, sandbag parapet and the two mounted heavy machine guns (reference the M2 exactly), the base's rooftops and the desert far below beyond the parapet"
       ],
       "life": "far below, small vehicles and walking soldiers moving about the base, thin clouds drifting, a light breeze stirring dust",
       "uses": [
-        "LOCATION"
+        "LOCATION",
+        "M2"
       ],
       "must": [
-        "two very large belt-fed M2 .50 caliber heavy machine guns on pintle mounts with rear spade grips, pointing out over the sandbag parapet"
+        "two mounted M2 heavy machine guns exactly like the M2 reference, on pintle posts with rear spade grips, pointing out over the sandbag parapet"
       ]
     },
     "LOCATION": {
@@ -46,13 +51,42 @@
       ],
       "look": "the whole forward operating base seen from a high vantage point inside it, looking out over the gate: the high perimeter blast wall of stacked HESCO barriers and sandbags (the opening in the wall blocked by two large military cargo trucks parked nose to tail) across the middle distance with the opening at its centre blocked by two large military cargo trucks parked nose to tail, the guard tower large and clear just inside the wall to the right of the gate, dense rows of prefab huts, tents, containers and sandbag walls filling the foreground on both sides, and the straight dirt road running from the gate away across empty desert to a highway on the far horizon; in the opening there is no gate of any kind, only the two parked trucks",
       "angles": [
-        "from ground level just inside the wall at the foot of the tower, looking out through the opening in the wall (blocked by the two parked cargo trucks) along the empty road to the highway on the horizon, the tower's braced legs rising at the right edge of frame",
-        "from ground level inside the base, looking down a lane between the packed huts, tents, containers and sandbag walls toward the opening in the wall, the tower visible above the rooftops to the right",
-        "from the top of the tower looking out over the wall: the two barrier trucks across the opening directly below, the empty road running away from them to the highway, the desert flat to the horizon",
+        {
+          "crop": [
+            0.38,
+            0.15,
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "crop": [
+            0.05,
+            0.45,
+            0.55,
+            0.55
+          ]
+        },
+        "from the top of the tower looking out over the wall: the two barrier trucks across the opening directly below, the empty road running away from them to the highway, the desert flat to the horizon; the camera is ON the tower so no tower is in frame",
         "from the road OUTSIDE the wall, camera at road level looking away from the base toward the highway: the empty straight dirt road to the horizon, open flat desert on both sides, nothing of the base or its wall in frame",
-        "from the road outside the wall, about a hundred yards out, looking back toward the base: the high HESCO wall, the two barrier trucks parked nose to tail across the opening, the tower rising just to the right of the opening, no chain-link anywhere"
+        {
+          "crop": [
+            0.3,
+            0.05,
+            0.4,
+            0.4
+          ]
+        }
       ],
-      "life": "small jeeps and pickups moving slowly between the buildings, a few soldiers walking, thin clouds drifting across the sky, light dust lifting in a mild breeze"
+      "life": "small jeeps and pickups moving slowly between the buildings, a few soldiers walking, thin clouds drifting across the sky, light dust lifting in a mild breeze",
+      "hires": true,
+      "angleNotes": [
+        "gate view: crop of the plate around the opening and the tower",
+        "lane view: crop of the plate's foreground",
+        "from the tower top (generated)",
+        "the road outside, looking away (generated)",
+        "the tower and the opening, close: crop of the plate"
+      ]
     },
     "WRECK": {
       "kind": "set",

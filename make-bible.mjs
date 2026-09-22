@@ -14,7 +14,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { has, hash, readJson, writeJson, fresh, stamp, pool, ledger, makeImage, contactSheet, log as L, warn as W } from './lib.mjs';
+import { has, hash, readJson, writeJson, fresh, stamp, pool, ledger, makeImage, contactSheet, ffmpeg, log as L, warn as W } from './lib.mjs';
 
 const log = L('bible'), warn = W('bible');
 const argv = process.argv.slice(2);
@@ -117,7 +117,7 @@ await pool(ready.flatMap(([name, e]) => Array.from({ length: N }, (_, i) => ({ n
   const prompt = e.from
     ? `${legend}. Edit reference 1 in place: keep exactly the same camera viewpoint, framing and layout and every element unchanged, except: ${e.look}${trText ? `; ${trText}` : ''}.${geo ? ` Fixed geography: ${geo}` : ''} ${bible.style}`
     : `${legend ? `${legend}. Include exactly these, unchanged in every detail${trText ? ` except that ${trText}` : ''}, in the picture. ` : ''}${e.look}. ${POSE[e.kind] || POSE.prop}${geo ? ` Fixed geography of this location: ${geo}` : ''} ${bible.style}`;
-  await makeImage({ modelName: IMAGE_MODEL, file: path.join(dir(name), `candidate_${i}.jpg`), key: hash(prompt, i, IMAGE_MODEL, refs.map((f) => readJson(`${f}.key`, null))), prompt, refs, check, geography: geo, transform: tr, charge: money.charge, log, warn });
+  await makeImage({ modelName: IMAGE_MODEL, file: path.join(dir(name), `candidate_${i}.jpg`), key: hash(prompt, i, IMAGE_MODEL, refs.map((f) => readJson(`${f}.key`, null)), !!e.hires), prompt, refs, check, geography: geo, transform: tr, hires: !!e.hires, charge: money.charge, log, warn });
 });
 if (ready.length) {
   const entries = ready.flatMap(([name]) => Array.from({ length: N }, (_, i) => ({ file: path.join(DIR, name, `candidate_${i + 1}.jpg`), label: `${name} ${i + 1}` })).filter((x) => has(x.file)));
@@ -134,7 +134,22 @@ if (ANGLES) {
     const master = path.join(DIR, name, 'master.jpg');
     if (!has(master)) { warn(`${name}: not approved yet, skipping angles`); continue; }
     // An angle file with a ".pinned" marker beside it was supplied by hand and is never regenerated.
-    (e.angles || []).forEach((angle, i) => { if (!fs.existsSync(path.join(DIR, name, `angle_${i + 1}.jpg.pinned`))) jobs.push({ name, e, angle, i: i + 1, master }); });
+    (e.angles || []).forEach((angle, i) => {
+      const file = path.join(DIR, name, `angle_${i + 1}.jpg`);
+      if (fs.existsSync(`${file}.pinned`)) return;
+      // An angle written as { "crop": [x, y, w, h] } (fractions of the master, 0-1) is CUT from the
+      // master by ffmpeg, never generated: the geometry cannot drift. Needs a hi-res master.
+      if (angle && typeof angle === 'object' && angle.crop) {
+        const [x, y, w, h] = angle.crop;
+        const key = hash('crop', angle.crop, readJson(`${master}.key`, null));
+        if (!fresh(file, key)) {
+          ffmpeg(['-i', master, '-vf', `crop=iw*${w}:ih*${h}:iw*${x}:ih*${y},scale=1920:1080:flags=lanczos`, '-q:v', '2', file], DIR);
+          stamp(file, key); log(`${name}/angle_${i + 1}.jpg cropped from the master (no generation)`);
+        }
+        return;
+      }
+      jobs.push({ name, e, angle, i: i + 1, master });
+    });
   }
   await pool(jobs, 4, async ({ name, e, angle, i, master }) => {
     const uses = (e.uses || []).filter(approvedNow);
