@@ -1,0 +1,4 @@
+out/
+bible/
+*.log
+node_modules/

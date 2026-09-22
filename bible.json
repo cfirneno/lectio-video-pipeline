@@ -1,0 +1,67 @@
+{
+  "title": "The Truck",
+  "style": "cinematic war film still, photorealistic, flat open desert, harsh midday light, dust haze and heat shimmer, 35mm film look, desaturated tan and olive palette, full-frame 16:9, no letterbox bars, no borders, no text or lettering anywhere in the image",
+  "voices": {
+    "NARRATOR": "Bill"
+  },
+  "entities": {
+    "CONNORS": {
+      "kind": "person",
+      "voice": "Eric",
+      "look": "Paul Connors, a lean US Army soldier in his late thirties, short brown hair, light stubble, weathered face, clear grey-blue eyes, no sunglasses or eyewear of any kind, tan camouflage combat uniform, body armor vest, combat helmet with the chin strap fastened"
+    },
+    "BOGHADAIR": {
+      "kind": "person",
+      "voice": "Brian",
+      "look": "Joseph Boghadair, a US Army machine gunner around thirty, olive skin, dark eyes, clean-shaven, no sunglasses or eyewear of any kind, close-cropped black hair, calm focused expression, tan camouflage combat uniform, body armor vest, combat helmet with the chin strap fastened"
+    },
+    "TRUCK": {
+      "kind": "vehicle",
+      "look": "a huge yellow mining dump truck, dump bed heaped high under a lashed tan tarp; its entire front is hidden behind one flat wall of thick rusty steel plate as wide as the truck and as tall as the cab roof, covering the grille, headlights, windshield and front wheels, with a single narrow horizontal slit at driver eye height as the only opening; the steel wall wraps a short way around both sides of the cab",
+      "angles": [
+        "head-on front view, the steel wall and its slit filling the frame",
+        "side view, the whole length of the truck",
+        "three-quarter rear view showing the heaped dump bed under its tarp"
+      ]
+    },
+    "TOWER": {
+      "kind": "set",
+      "look": "a wooden military guard tower in flat desert just inside a high perimeter blast wall of stacked HESCO barriers and sandbags, about forty feet tall: four braced timber legs with cross-bracing in three tiers, a zigzag stair up one side, and on top a large open-sided cabin about twelve feet square with a plank roof on corner posts and a chest-high sandbag parapet all round; inside the cabin two M2 .50 caliber heavy machine guns on pintle mounts point out over the parapet, with two soldiers standing behind them",
+      "angles": [
+        "wide exterior view from the ground, the whole tower from its legs to its roof, the two soldiers visible behind the two mounted guns",
+        "interior view from inside the cabin: plank floor, roof posts, sandbag parapet and the two mounted heavy machine guns, the base's rooftops and the desert far below beyond the parapet"
+      ],
+      "life": "far below, small vehicles and walking soldiers moving about the base, thin clouds drifting, a light breeze stirring dust"
+    },
+    "LOCATION": {
+      "kind": "location",
+      "uses": [
+        "TOWER"
+      ],
+      "look": "the whole forward operating base seen from a high vantage point inside it, looking out over the gate: the high perimeter blast wall of stacked HESCO barriers and sandbags (no wire fence anywhere) across the middle distance with the gate at its centre, the guard tower large and clear just inside the wall to the right of the gate, dense rows of prefab huts, tents, containers and sandbag walls filling the foreground on both sides, and the straight dirt road running from the gate away across empty desert to a highway on the far horizon",
+      "angles": [
+        "from ground level just inside the gate, looking out through the gate along the empty road to the highway on the horizon, the tower just inside the wall to the right of the gate",
+        "from ground level inside the base, looking down a lane between the packed huts, tents, containers and sandbag walls toward the gate, the tower visible above the rooftops to the right",
+        "from the top of the tower looking out over the wall and the gate, the empty road running away to the highway, the desert flat to the horizon"
+      ],
+      "life": "small jeeps and pickups moving slowly between the buildings, a few soldiers walking, thin clouds drifting across the sky, light dust lifting in a mild breeze"
+    },
+    "WRECK": {
+      "kind": "set",
+      "from": "LOCATION",
+      "uses": [
+        "TOWER"
+      ],
+      "look": "the same base after the blast, late afternoon light: the blast wall breached and scattered at the gate, dozens of huts, tents and containers flattened or burning, black smoke columns, debris across the road",
+      "transform": {
+        "TOWER": "collapsed into a heap of splintered timber to the right of the gate, only its lower legs standing",
+        "LOCATION": "the same base after a huge blast: wall breached at the gate, buildings flattened or burning, smoke columns"
+      },
+      "life": "smoke columns drifting, ash and dust settling, distant figures moving through the debris",
+      "angles": [
+        "from ground level in the wreckage near the collapsed tower, looking across the debris toward the breached gate"
+      ]
+    }
+  },
+  "geography": "the base perimeter is a HIGH BLAST WALL of stacked HESCO barriers and sandbags, NOT a wire or chain-link fence, with a heavy gate in it; seen from inside the base looking out through the gate, the dirt road runs straight away from the gate to the highway on the horizon and is EMPTY of vehicles unless a shot says otherwise; the guard tower stands just inside the wall immediately to the RIGHT of the gate; the dense base fills the ground behind and to both sides of the gate; the truck always comes down the road from the highway toward the gate, so from the tower it approaches head-on and from the base it moves toward the camera"
+}

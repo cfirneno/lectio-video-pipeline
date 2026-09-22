@@ -1,0 +1,884 @@
+{
+  "slug": "truck-bomb",
+  "title": "The Truck",
+  "beds": [
+    {
+      "kind": "music",
+      "from": "open",
+      "to": "hit",
+      "volume": [
+        0.5,
+        0.95
+      ],
+      "fadeIn": 3,
+      "fadeOut": 0.2,
+      "prompt": "slow-burn military thriller underscore, low pulsing synth bass, ticking clock-like percussion, rising dread that keeps building to a hard stop, no melody, no vocals"
+    },
+    {
+      "kind": "music",
+      "from": "found",
+      "to": "found",
+      "volume": 0.8,
+      "fadeIn": 3,
+      "fadeOut": 3,
+      "prompt": "somber sparse aftermath music, soft low strings and a distant piano, grief turning to quiet relief at the end, no vocals"
+    },
+    {
+      "kind": "sfx",
+      "from": "open",
+      "to": "n1",
+      "volume": 0.35,
+      "fadeIn": 1,
+      "fadeOut": 2,
+      "prompt": "a mild desert breeze, distant vehicles idling and driving slowly, faint voices of soldiers, a generator humming, canvas flapping softly"
+    },
+    {
+      "kind": "sfx",
+      "from": "n2",
+      "to": "hit",
+      "volume": [
+        0.15,
+        0.5
+      ],
+      "fadeIn": 1,
+      "fadeOut": 0.2,
+      "prompt": "desert wind rising steadily, dust hissing across sand"
+    },
+    {
+      "kind": "sfx",
+      "from": "silence",
+      "to": "found",
+      "volume": 0.3,
+      "fadeIn": 0.5,
+      "fadeOut": 3,
+      "prompt": "aftermath of an explosion, debris settling, small fires crackling, wind, distant muffled shouting"
+    }
+  ],
+  "beats": [
+    {
+      "id": "open",
+      "type": "action",
+      "seconds": 7,
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "with": [
+            "TOWER"
+          ],
+          "setup": "est-base",
+          "shot": "wide establishing shot of the base from outside the wall at the gate: the dense rows of buildings, the tower rising over them on the right, the road running away to the highway on the horizon",
+          "motion": "slow drift right across the base; jeeps crawl between buildings, soldiers walk, clouds move, a little dust lifts in the breeze",
+          "in": "fade",
+          "angle": {
+            "LOCATION": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "n1",
+      "type": "action",
+      "shots": [
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 1
+          },
+          "with": [
+            "CONNORS"
+          ],
+          "setup": "tower-foot",
+          "shot": "Connors at the foot of the tower with a notebook, looking up at the cabin; medium wide shot from the side, the busy base behind him",
+          "motion": "he glances up, shades his eyes; a jeep passes behind him; slow push in"
+        },
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "BOGHADAIR"
+          ],
+          "setup": "int-setup",
+          "shot": "inside the tower cabin from behind the two men: both mounted guns pointing out over the parapet, Boghadair at the left gun scanning, the rooftops of the base and the road below",
+          "motion": "Boghadair slowly sweeps his gun across the horizon; below, vehicles move and a soldier walks; clouds drift"
+        }
+      ],
+      "seconds": 10
+    },
+    {
+      "id": "n2",
+      "type": "action",
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine far away, faint, downshifting and accelerating",
+          "seconds": 10,
+          "volume": [
+            0.05,
+            0.2
+          ]
+        }
+      ],
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "truck-far",
+          "shot": "extreme telephoto from the tower: the truck tiny and far away, turning off the highway onto the road, a thin dust trail behind it, heavy heat shimmer",
+          "motion": "the distant truck completes its turn and starts toward the camera, its dust trail growing",
+          "angle": {
+            "LOCATION": 3
+          }
+        },
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "with": [
+            "CONNORS"
+          ],
+          "setup": "binos-up",
+          "shot": "close-up of Connors at the wall raising binoculars to his eyes with both hands",
+          "motion": "he snaps the binoculars up and goes rigid, slight handheld shake",
+          "angle": {
+            "LOCATION": 1
+          }
+        }
+      ],
+      "seconds": 8
+    },
+    {
+      "id": "n2b",
+      "type": "action",
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine, distant but growing, tires on dirt",
+          "seconds": 12,
+          "volume": [
+            0.15,
+            0.3
+          ]
+        }
+      ],
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "truck-binos",
+          "shot": "binocular point-of-view with a soft dark circular vignette: the truck head-on on the road, its steel front and single slit, a modest dust cloud behind it",
+          "motion": "the truck rolls straight toward the camera through heat shimmer, the view trembling slightly, dust rising behind it"
+        },
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "with": [
+            "CONNORS"
+          ],
+          "setup": "binos-down",
+          "shot": "close-up of Connors lowering the binoculars to his chest, face drained, eyes wide",
+          "motion": "he lowers the binoculars slowly, swallows, then turns sharply toward the tower",
+          "angle": {
+            "LOCATION": 1
+          }
+        }
+      ],
+      "seconds": 8
+    },
+    {
+      "id": "climb",
+      "type": "action",
+      "seconds": 6,
+      "sfx": [
+        {
+          "prompt": "combat boots pounding up a wooden stair fast, gear rattling, heavy breathing",
+          "seconds": 6,
+          "volume": 0.8
+        }
+      ],
+      "shots": [
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 1
+          },
+          "with": [
+            "CONNORS"
+          ],
+          "setup": "stair",
+          "shot": "Connors racing up the tower stair, seen from below at a low angle against the sky",
+          "motion": "he climbs as fast as he can, the stair shaking"
+        },
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "CONNORS",
+            "BOGHADAIR"
+          ],
+          "setup": "int-two",
+          "shot": "inside the cabin from the side: Connors dropping in behind the right-hand mounted gun and grabbing its spade grips, Boghadair already at the left gun, both facing out over the parapet",
+          "motion": "he throws himself behind the gun, racks the charging handle and swings the barrel toward the road"
+        }
+      ]
+    },
+    {
+      "id": "d1",
+      "type": "dialogue",
+      "speaker": "CONNORS",
+      "text": "Bogey, what is there time to do?",
+      "tail": 0.2,
+      "shots": [
+        {
+          "mode": "lipsync",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "CONNORS"
+          ],
+          "setup": "cu-CONNORS",
+          "shot": "close-up of CONNORS behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.2
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "type": "dialogue",
+      "speaker": "BOGHADAIR",
+      "text": "Barely enough time to say your prayers and start shooting at that truck.",
+      "tail": 0.3,
+      "shots": [
+        {
+          "mode": "lipsync",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "BOGHADAIR"
+          ],
+          "setup": "cu-BOGHADAIR",
+          "shot": "close-up of BOGHADAIR behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.25
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "type": "dialogue",
+      "speaker": "CONNORS",
+      "text": "Can we shoot through that plate?",
+      "tail": 0.2,
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "truck-stage2",
+          "shot": "telephoto from the tower: the truck coming down the road, still distant, a growing dust cloud behind it",
+          "motion": "the truck accelerates toward the camera, dust thickening behind it"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.3
+        }
+      ]
+    },
+    {
+      "id": "d4a",
+      "type": "dialogue",
+      "speaker": "BOGHADAIR",
+      "text": "No, it's too thick, and they even have the tires blocked.",
+      "tail": 0.15,
+      "shots": [
+        {
+          "mode": "lipsync",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "BOGHADAIR"
+          ],
+          "setup": "cu-BOGHADAIR",
+          "shot": "close-up of BOGHADAIR behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.35
+        }
+      ]
+    },
+    {
+      "id": "d4b",
+      "type": "dialogue",
+      "speaker": "BOGHADAIR",
+      "text": "And they'll be coming straight on, so I don't think I'll be able to get a shot through the side.",
+      "tail": 0.15,
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "truck-stage3",
+          "shot": "low head-on shot from the road: the truck nearer now, its steel wall reaching almost to the ground, a heavy dust plume behind",
+          "motion": "the truck bears straight down on the camera, getting larger, dust boiling"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.4
+        }
+      ]
+    },
+    {
+      "id": "d4c",
+      "type": "dialogue",
+      "speaker": "BOGHADAIR",
+      "text": "I think the only target is the slot they left for the driver to see through.",
+      "tail": 0.3,
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "slot-far",
+          "shot": "extreme telephoto close-up of only the narrow vision slit in the truck's rusty steel front, darkness behind it",
+          "motion": "the slit bounces and shakes in frame as the truck moves, heat shimmer"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.45
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "type": "dialogue",
+      "speaker": "CONNORS",
+      "text": "You're going to try to hit the driver?",
+      "tail": 0.2,
+      "shots": [
+        {
+          "mode": "lipsync",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "CONNORS"
+          ],
+          "setup": "cu-CONNORS",
+          "shot": "close-up of CONNORS behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.5
+        }
+      ]
+    },
+    {
+      "id": "d6a",
+      "type": "dialogue",
+      "speaker": "BOGHADAIR",
+      "text": "No, he's going to point that thing at us and mostly duck down while he's driving.",
+      "tail": 0.15,
+      "shots": [
+        {
+          "mode": "lipsync",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "BOGHADAIR"
+          ],
+          "setup": "cu-BOGHADAIR",
+          "shot": "close-up of BOGHADAIR behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.55
+        }
+      ]
+    },
+    {
+      "id": "d6b",
+      "type": "dialogue",
+      "speaker": "BOGHADAIR",
+      "text": "Our only chance is to get a slug through the cab and into the payload.",
+      "tail": 0.5,
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 2,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "truck-side",
+          "shot": "side tracking shot of the truck at speed, dump bed heaped under its tarp, a wall of dust streaming behind",
+          "motion": "the truck barrels along, tarp snapping, dust streaming"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.6
+        }
+      ]
+    },
+    {
+      "id": "d7",
+      "type": "dialogue",
+      "speaker": "CONNORS",
+      "text": "I can barely see that slot. You think you can do this?",
+      "tail": 0.3,
+      "lead": 0.6,
+      "shots": [
+        {
+          "mode": "lipsync",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "CONNORS"
+          ],
+          "setup": "cu-CONNORS",
+          "shot": "close-up of CONNORS behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.65
+        }
+      ]
+    },
+    {
+      "id": "d8",
+      "type": "dialogue",
+      "speaker": "BOGHADAIR",
+      "text": "We better both hope that I can.",
+      "tail": 0.8,
+      "lead": 0.8,
+      "shots": [
+        {
+          "mode": "lipsync",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "BOGHADAIR"
+          ],
+          "setup": "cu-BOGHADAIR",
+          "shot": "close-up of BOGHADAIR behind his mounted machine gun inside the tower cabin, both hands on the spade grips, face turned three-quarters toward the camera, mouth closed, evenly lit"
+        }
+      ],
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine approaching under load, tires on dirt, rising",
+          "seconds": 10,
+          "volume": 0.7
+        }
+      ]
+    },
+    {
+      "id": "n3",
+      "type": "action",
+      "sfx": [
+        {
+          "prompt": "two heavy .50 caliber machine guns firing long bursts from inside a wooden tower, brass casings hitting the floor",
+          "seconds": 14,
+          "volume": 0.75
+        },
+        {
+          "prompt": "bullets striking thick steel plate at a distance, ricochets and metallic pings",
+          "seconds": 10,
+          "at": 2,
+          "volume": 0.5
+        },
+        {
+          "prompt": "a heavy diesel truck engine roaring closer, loud",
+          "seconds": 14,
+          "volume": [
+            0.6,
+            0.75
+          ]
+        }
+      ],
+      "shots": [
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "CONNORS",
+            "BOGHADAIR"
+          ],
+          "setup": "int-two",
+          "shot": "inside the cabin from the side: both men firing their mounted guns out over the parapet, big muzzle flashes, brass flying, smoke",
+          "motion": "both guns hammer in bursts, the men shaking with the recoil, casings pouring onto the floor"
+        },
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "slot-wide",
+          "shot": "telephoto head-on: the truck's whole steel front as bullet strikes spark at scattered points all over it, dust behind",
+          "motion": "sparks burst at random points all over the plate while the truck keeps coming"
+        }
+      ],
+      "seconds": 10
+    },
+    {
+      "id": "n3b",
+      "type": "action",
+      "sfx": [
+        {
+          "prompt": "a single heavy machine gun firing steady controlled bursts nearby",
+          "seconds": 8,
+          "volume": 0.6
+        },
+        {
+          "prompt": "a heavy diesel truck engine very loud and close",
+          "seconds": 8,
+          "volume": 0.8
+        }
+      ],
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "slot-mid",
+          "shot": "closer telephoto on the steel front: a tighter cluster of bullet strikes sparking around the slit",
+          "motion": "impacts walk in toward the slit, sparks and paint chips flying"
+        },
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "slot-close",
+          "shot": "extreme close-up of the slit itself, sparks bursting on the steel just beside it",
+          "motion": "strikes land closer and closer to the slit, one spark right at its edge"
+        }
+      ],
+      "seconds": 7
+    },
+    {
+      "id": "n4",
+      "type": "action",
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine at full throttle, thundering closer",
+          "seconds": 16,
+          "volume": [
+            0.7,
+            0.9
+          ]
+        },
+        {
+          "prompt": "a single heavy machine gun firing steady controlled bursts nearby",
+          "seconds": 16,
+          "volume": 0.55
+        }
+      ],
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "truck-fence",
+          "shot": "head-on from the gate: the truck at high speed, enormous dust plume, the blast wall in the foreground",
+          "motion": "the truck charges toward the camera at full speed, bouncing, dust filling the frame behind it"
+        },
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "CONNORS",
+            "BOGHADAIR"
+          ],
+          "setup": "radio",
+          "shot": "inside the cabin: Connors shouting into a handheld military radio held to his mouth, one hand still on his gun; Boghadair firing beside him",
+          "motion": "he yells into the radio, flinching with each burst"
+        },
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "setup": "base-run",
+          "shot": "wide shot inside the base: soldiers sprinting between buildings toward sandbag bunkers, jeeps swerving",
+          "motion": "soldiers run hard for cover, a jeep skids to a stop, dust kicks up",
+          "angle": {
+            "LOCATION": 2
+          }
+        }
+      ],
+      "seconds": 12
+    },
+    {
+      "id": "hit",
+      "type": "action",
+      "sfx": [
+        {
+          "prompt": "a heavy diesel truck engine at full throttle, extremely close, deafening",
+          "seconds": 9,
+          "volume": [
+            0.85,
+            1.0
+          ]
+        },
+        {
+          "prompt": "a single heavy machine gun firing one short burst",
+          "seconds": 2,
+          "at": 5,
+          "volume": 0.8
+        }
+      ],
+      "shots": [
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "truck-close",
+          "shot": "from the tower over the parapet: the truck enormous and very close beyond the wall, its steel front filling most of the frame, dust everywhere",
+          "motion": "the truck rushes at the wall, filling more and more of the frame"
+        },
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 2
+          },
+          "with": [
+            "BOGHADAIR"
+          ],
+          "setup": "bog-eye",
+          "shot": "extreme close-up of Boghadair's eye along the sights, steady, then the flash of the gun",
+          "motion": "his eye holds on the sights, the gun fires, the muzzle flash lights his face"
+        },
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "angle": {
+            "TRUCK": 1,
+            "LOCATION": 1
+          },
+          "with": [
+            "TRUCK"
+          ],
+          "setup": "slot-hit",
+          "shot": "extreme close-up of the slit: one bullet strike dead in the opening, a white flash blooming out of it",
+          "motion": "a single strike enters the slit and a blinding white flash erupts from inside",
+          "transform": {
+            "TRUCK": "a white flash erupting from its vision slit"
+          }
+        }
+      ],
+      "seconds": 7
+    },
+    {
+      "id": "blast",
+      "type": "action",
+      "seconds": 6,
+      "sfx": [
+        {
+          "prompt": "an enormous truck bomb explosion at close range, a massive concussive boom with a long rolling rumble and debris raining down",
+          "seconds": 10,
+          "volume": 1.0
+        }
+      ],
+      "shots": [
+        {
+          "mode": "video",
+          "set": "LOCATION",
+          "setup": "fireball",
+          "shot": "a colossal orange-white explosion erupting on the road just short of the wall, a towering fireball filling the frame, a ring of dust racing outward",
+          "motion": "the fireball blooms outward and a shock wave of dust races toward the camera",
+          "in": "flash",
+          "transform": {
+            "LOCATION": "hidden behind a colossal fireball and dust cloud at the gate"
+          },
+          "angle": {
+            "LOCATION": 1
+          }
+        },
+        {
+          "mode": "video",
+          "set": "TOWER",
+          "angle": {
+            "TOWER": 1
+          },
+          "setup": "tower-blast",
+          "shot": "wide shot: the tower hit by the blast wave, splintering, torn off its legs and thrown into the air amid sandbags and timber; buildings behind it flattened",
+          "motion": "the blast wave slams the tower and it tumbles through the air with debris; roofs tear off the buildings behind",
+          "transform": {
+            "TOWER": "being torn off its legs by the blast wave and thrown into the air, splintering"
+          }
+        }
+      ]
+    },
+    {
+      "id": "silence",
+      "type": "action",
+      "seconds": 4,
+      "sfx": [
+        {
+          "prompt": "high-pitched ear ringing tinnitus tone with muffled underwater rumble",
+          "seconds": 5,
+          "volume": 0.6
+        }
+      ],
+      "shots": [
+        {
+          "mode": "still",
+          "set": "WRECK",
+          "setup": "dust",
+          "shot": "thick brown dust and smoke filling the entire frame, dim sunlight barely glowing through it",
+          "zoom": "in",
+          "out": "fade"
+        }
+      ]
+    },
+    {
+      "id": "found",
+      "type": "action",
+      "shots": [
+        {
+          "mode": "video",
+          "set": "WRECK",
+          "setup": "wreck-wide",
+          "shot": "wide shot across the wreckage of the base: soldiers and medics picking their way through the debris, smoke columns behind",
+          "motion": "the rescuers move carefully through the debris, smoke drifting",
+          "in": "fade"
+        },
+        {
+          "mode": "video",
+          "set": "WRECK",
+          "setup": "medics",
+          "shot": "from behind: three medics kneeling in a tight group in the wreckage giving first aid, a stretcher beside them; between them only the boots and dusty legs of two resting soldiers are visible",
+          "motion": "dust settles, a rescuer's shadow falls across the group"
+        },
+        {
+          "mode": "video",
+          "set": "WRECK",
+          "with": [
+            "BOGHADAIR"
+          ],
+          "setup": "pulse",
+          "shot": "close shot of dust-covered Boghadair lying on his back in the wreckage with his eyes closed, a medic's hand at the side of his neck checking for a pulse",
+          "motion": "the medic checks for a pulse, looks up and nods urgently off screen; the soldier's chest rises",
+          "out": "fade"
+        }
+      ],
+      "seconds": 14
+    }
+  ]
+}
