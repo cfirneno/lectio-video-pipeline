@@ -82,11 +82,17 @@ if (REDO) {
 for (const [name, n] of picks) {
   const targets = name === 'all' ? Object.keys(bible.entities).filter((e) => !has(path.join(DIR, e, 'master.jpg'))) : [name];
   for (const t of targets) {
-    const src = path.join(DIR, t, `candidate_${n}.jpg`);
+    // NAME=auto: the first candidate that passed its continuity check (else candidate 1)
+    let pickN = n;
+    if (n === 'auto') {
+      const passed = [1, 2, 3, 4, 5].find((i) => { const v = readJson(path.join(DIR, t, `candidate_${i}.jpg.check.json`), null); return has(path.join(DIR, t, `candidate_${i}.jpg`)) && (!v || v.ok); });
+      pickN = passed || 1; log(`${t}: auto-picked candidate ${pickN}${passed ? ' (passed its checks)' : ' (none passed; took 1)'}`);
+    }
+    const src = path.join(DIR, t, `candidate_${pickN}.jpg`);
     if (!has(src)) { warn(`${t}: no candidate_${n}.jpg to approve`); continue; }
     fs.copyFileSync(src, path.join(DIR, t, 'master.jpg'));
     writeJson(path.join(DIR, t, 'master.jpg.key'), readJson(`${src}.key`, null));
-    log(`${t}: approved candidate ${n}`);
+    log(`${t}: approved candidate ${pickN}`);
   }
 }
 
