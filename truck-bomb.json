@@ -67,7 +67,7 @@
             "TOWER"
           ],
           "setup": "est-base",
-          "shot": "wide establishing shot of the base from outside the wall at the gate: the dense rows of buildings, the tower rising over them on the right, the road running away to the highway on the horizon",
+          "shot": "wide establishing shot from a high point inside the base looking out over the wall: the dense rows of buildings, the tower rising over them to the right of the opening, the two barrier trucks across the opening, the road running away to the highway on the horizon",
           "motion": "slow drift right across the base; jeeps crawl between buildings, soldiers walk, clouds move, a little dust lifts in the breeze",
           "in": "fade",
           "angle": {
@@ -130,20 +130,21 @@
             "TRUCK"
           ],
           "setup": "truck-far",
-          "shot": "extreme telephoto from the tower: the truck tiny and far away, turning off the highway onto the road, a thin dust trail behind it, heavy heat shimmer",
+          "shot": "from ground level at the foot of the tower, a long telephoto look out through the opening in the wall past the two barrier trucks: the truck tiny and far away, turning off the highway onto the road, a thin dust trail behind it, heavy heat shimmer",
           "motion": "the distant truck completes its turn and starts toward the camera, its dust trail growing",
           "angle": {
-            "LOCATION": 3
+            "LOCATION": 1
           }
         },
         {
           "mode": "video",
           "set": "LOCATION",
           "with": [
-            "CONNORS"
+            "CONNORS",
+            "TOWER"
           ],
           "setup": "binos-up",
-          "shot": "close-up of Connors at the wall raising binoculars to his eyes with both hands",
+          "shot": "close-up of Connors standing on the ground at the foot of the tower, its braced timber legs and stair rising behind him, raising binoculars to his eyes with both hands, looking out through the opening in the wall",
           "motion": "he snaps the binoculars up and goes rigid, slight handheld shake",
           "angle": {
             "LOCATION": 1
@@ -184,10 +185,11 @@
           "mode": "video",
           "set": "LOCATION",
           "with": [
-            "CONNORS"
+            "CONNORS",
+            "TOWER"
           ],
           "setup": "binos-down",
-          "shot": "close-up of Connors lowering the binoculars to his chest, face drained, eyes wide",
+          "shot": "close-up of Connors at the foot of the tower, its legs and stair behind him, lowering the binoculars to his chest, face drained, eyes wide",
           "motion": "he lowers the binoculars slowly, swallows, then turns sharply toward the tower",
           "angle": {
             "LOCATION": 1
@@ -695,7 +697,7 @@
             "TRUCK"
           ],
           "setup": "truck-fence",
-          "shot": "head-on from the gate: the truck at high speed, enormous dust plume, the blast wall in the foreground",
+          "shot": "head-on from the opening in the wall: the truck at high speed, enormous dust plume, the blast wall in the foreground",
           "motion": "the truck charges toward the camera at full speed, bouncing, dust filling the frame behind it"
         },
         {
@@ -824,7 +826,7 @@
             "TOWER": 1
           },
           "setup": "tower-blast",
-          "shot": "wide shot from inside the base: the single guard tower by the gate hit by the blast wave, splintering, torn off its legs and thrown into the air amid sandbags and timber; the huts behind it flattened; there is only ONE tower in the base",
+          "shot": "wide shot from inside the base: the single guard tower by the opening in the wall hit by the blast wave, splintering, torn off its legs and thrown into the air amid sandbags and timber; the huts behind it flattened; there is only ONE tower in the base",
           "motion": "the blast wave slams the tower and it tumbles through the air with debris; roofs tear off the buildings behind",
           "transform": {
             "TOWER": "the one and only tower, being torn off its legs by the blast wave and thrown into the air, splintering"

@@ -28,6 +28,7 @@ const N = bible.candidates || 3;
 const picks = argv.filter((a) => a.includes('=')).map((a) => a.split('='));
 const ANGLES = argv.includes('--angles');
 const REDO = argv.includes('--redo') ? argv[argv.indexOf('--redo') + 1] : null;
+const FIX = argv.includes('--fix') ? { name: argv[argv.indexOf('--fix') + 1], how: argv[argv.indexOf('--fix') + 2] } : null;
 const money = ledger(path.join(DIR, 'cost.json'));
 const dir = (name) => { const d = path.join(DIR, name); fs.mkdirSync(d, { recursive: true }); return d; };
 
@@ -39,6 +40,28 @@ const POSE = {
   location: 'One wide master view of the whole location from a high vantage point, every named part in its fixed position, so that all other views can be taken from it.',
   prop: 'The object alone on a plain background.',
 };
+
+// --fix NAME "instruction": edit the approved master in place (same viewpoint, everything else unchanged),
+// then throw away its derived views (pinned ones too) and the masters of entities built from it,
+// so they are remade from the revised picture.
+if (FIX) {
+  const { name, how } = FIX; const e = bible.entities[name];
+  const master = path.join(DIR, name, 'master.jpg');
+  if (!e || !has(master)) { console.error(`--fix: ${name} has no approved master`); process.exit(1); }
+  const prompt = `Reference 1 is ${name}. Edit it in place: keep exactly the same camera viewpoint, framing, layout and every element unchanged, except: ${how}.${bible.geography && e.kind !== 'person' && e.kind !== 'vehicle' ? ` Fixed geography: ${bible.geography}` : ''} ${bible.style}`;
+  const tmp = path.join(DIR, name, 'master_fix.jpg');
+  const ok = await makeImage({ modelName: IMAGE_MODEL, file: tmp, key: hash(prompt, readJson(`${master}.key`, null), IMAGE_MODEL), prompt, refs: [master], charge: money.charge, log, warn });
+  if (!ok) { console.error('--fix failed'); process.exit(1); }
+  fs.copyFileSync(master, path.join(DIR, name, `master_before_${Date.now()}.jpg`));
+  fs.renameSync(tmp, master); fs.renameSync(`${tmp}.key`, `${master}.key`);
+  for (const f of fs.readdirSync(path.join(DIR, name))) if (/^angle_/.test(f)) fs.rmSync(path.join(DIR, name, f), { force: true });
+  for (const [n, o] of Object.entries(bible.entities)) if (o.from === name || (o.uses || []).includes(name)) {
+    const d = path.join(DIR, n);
+    if (fs.existsSync(d)) for (const f of fs.readdirSync(d)) if (!/^master_before_/.test(f)) fs.rmSync(path.join(d, f), { force: true });
+    log(`${n}: cleared, it is built from ${name} and will be remade`);
+  }
+  log(`${name}: master revised (${how.slice(0, 60)}...); its views cleared`);
+}
 
 if (REDO) {
   const d = dir(REDO);

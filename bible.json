@@ -26,7 +26,7 @@
     },
     "TOWER": {
       "kind": "set",
-      "look": "the guard tower that stands just inside the blast wall to the RIGHT of the gate in reference 1, seen close from ground level inside the base: a wooden tower about forty feet tall on four braced timber legs with a zigzag stair up one side, a large open-sided cabin on top with a plank roof on corner posts and a chest-high sandbag parapet all round, two M2 .50 caliber heavy machine guns on pintle mounts pointing out over the parapet with two soldiers behind them; the HESCO-and-sandbag blast wall and the gate visible beside it, the gate a metal-frame mesh gate set in the wall",
+      "look": "the guard tower that stands just inside the blast wall to the RIGHT of the gate in reference 1, seen close from ground level inside the base: a wooden tower about forty feet tall on four braced timber legs with a zigzag stair up one side, a large open-sided cabin on top with a plank roof on corner posts and a chest-high sandbag parapet all round, two M2 .50 caliber heavy machine guns on pintle mounts pointing out over the parapet with two soldiers behind them; the HESCO-and-sandbag blast wall and the gate visible beside it, the opening in the wall blocked by two large military cargo trucks parked nose to tail",
       "angles": [
         "wide exterior view from the ground, the whole tower from its legs to its roof, the two soldiers visible behind the two mounted guns",
         "interior view from inside the cabin: plank floor, roof posts, sandbag parapet and the two mounted heavy machine guns, the base's rooftops and the desert far below beyond the parapet"
@@ -41,9 +41,9 @@
       "uses": [
         "TOWER"
       ],
-      "look": "the whole forward operating base seen from a high vantage point inside it, looking out over the gate: the high perimeter blast wall of stacked HESCO barriers and sandbags (the gate a metal-frame mesh gate set in the wall) across the middle distance with the gate at its centre, the guard tower large and clear just inside the wall to the right of the gate, dense rows of prefab huts, tents, containers and sandbag walls filling the foreground on both sides, and the straight dirt road running from the gate away across empty desert to a highway on the far horizon",
+      "look": "the whole forward operating base seen from a high vantage point inside it, looking out over the gate: the high perimeter blast wall of stacked HESCO barriers and sandbags (the opening in the wall blocked by two large military cargo trucks parked nose to tail) across the middle distance with the opening at its centre blocked by two large military cargo trucks parked nose to tail, the guard tower large and clear just inside the wall to the right of the gate, dense rows of prefab huts, tents, containers and sandbag walls filling the foreground on both sides, and the straight dirt road running from the gate away across empty desert to a highway on the far horizon",
       "angles": [
-        "from ground level just inside the gate, looking out through the gate along the empty road to the highway on the horizon, the tower just inside the wall to the right of the gate",
+        "from ground level just inside the wall at the foot of the tower, looking out through the opening in the wall (blocked by the two parked cargo trucks) along the empty road to the highway on the horizon, the tower's braced legs rising at the right edge of frame",
         "from ground level inside the base, looking down a lane between the packed huts, tents, containers and sandbag walls toward the gate, the tower visible above the rooftops to the right",
         "from the top of the tower looking out over the wall and the gate, the empty road running away to the highway, the desert flat to the horizon"
       ],
@@ -55,10 +55,10 @@
       "uses": [
         "TOWER"
       ],
-      "look": "the same base after the blast, late afternoon light: the blast wall breached and scattered at the gate, dozens of huts, tents and containers flattened or burning, black smoke columns, debris across the road",
+      "look": "the same base after the blast, late afternoon light: the blast wall breached at the opening, the two barrier trucks blown over and burning, dozens of huts, tents and containers flattened or burning, black smoke columns, debris across the road",
       "transform": {
         "TOWER": "collapsed into a heap of splintered timber to the right of the gate, only its lower legs standing",
-        "LOCATION": "the same base after a huge blast: wall breached at the gate, buildings flattened or burning, smoke columns"
+        "LOCATION": "the same base after a huge blast: wall breached at the opening, the two barrier trucks blown over and burning, buildings flattened or burning, smoke columns"
       },
       "life": "smoke columns drifting, ash and dust settling, distant figures moving through the debris",
       "angles": [
@@ -66,5 +66,5 @@
       ]
     }
   },
-  "geography": "the base perimeter is a HIGH BLAST WALL of stacked HESCO barriers and sandbags, not a fence; the gate itself is a metal-frame mesh gate set into that wall, exactly as in the LOCATION plate; seen from inside the base looking out through the gate, the dirt road runs straight away from the gate to the highway on the horizon and carries no vehicles near the gate unless a shot says otherwise (a small distant vehicle far out toward the highway is acceptable); the guard tower stands just inside the wall immediately to the RIGHT of the gate; the dense base fills the ground behind and to both sides of the gate; the truck always comes down the road from the highway toward the gate, so from the tower it approaches head-on and from the base it moves toward the camera"
+  "geography": "the base perimeter is a HIGH BLAST WALL of stacked HESCO barriers and sandbags, not a fence; there is NO chain-link or mesh gate anywhere; the opening in the wall is blocked by TWO large sand-coloured military cargo trucks parked nose to tail across it as a vehicle barrier, exactly as in the LOCATION plate; seen from inside the base looking out through the gate, the dirt road runs straight away from the gate to the highway on the horizon and carries no vehicles near the gate unless a shot says otherwise (a small distant vehicle far out toward the highway is acceptable); the guard tower stands just inside the wall immediately to the RIGHT of the gate; the dense base fills the ground behind and to both sides of the gate; the truck always comes down the road from the highway toward the gate, so from the tower it approaches head-on and from the base it moves toward the camera"
 }
