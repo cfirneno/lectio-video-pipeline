@@ -100,7 +100,8 @@ if (ANGLES) {
   await pool(jobs, 4, async ({ name, e, angle, i, master }) => {
     const uses = (e.uses || []).filter(approvedNow);
     const refs = [master, ...uses.map((u) => path.join(DIR, u, 'master.jpg'))];
-    const check = [{ name, kind: e.kind, look: e.look }, ...uses.map((u) => ({ name: u, kind: bible.entities[u].kind, look: bible.entities[u].look }))];
+    // an angle is an edit of its own master, so it is judged only against the OTHER entities it must contain
+    const check = uses.map((u) => ({ name: u, kind: bible.entities[u].kind, look: bible.entities[u].look }));
     const geo = e.kind === 'person' || e.kind === 'vehicle' ? '' : (bible.geography || '');
     const prompt = `Reference 1 is ${name}${uses.map((u, k) => `; reference ${k + 2} is ${u}`).join('')}. Re-photograph exactly the same ${e.kind === 'person' ? 'person' : e.kind === 'vehicle' ? 'vehicle' : 'place'} - every structure, object, material and colour unchanged, nothing added and nothing removed - from a new camera position: ${angle}.${geo ? ` Fixed geography: ${geo}` : ''} ${bible.style}`;
     await makeImage({ modelName: IMAGE_MODEL, file: path.join(dir(name), `angle_${i}.jpg`), key: hash(prompt, refs.map((f) => readJson(`${f}.key`, null)), IMAGE_MODEL), prompt, refs, check, geography: geo, transform: e.transform || {}, charge: money.charge, log, warn });

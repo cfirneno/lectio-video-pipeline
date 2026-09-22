@@ -269,7 +269,7 @@ await pool([...byPicture.values()], 4, async (s) => {
   const { refs, legend, check } = refsFor(s);
   const prompt = shotPrompt(s, legend);
   const key = hash(prompt, refs.map((f) => readJson(`${f}.key`, null)), IMAGE_MODEL);
-  if (!(await makeImage({ modelName: IMAGE_MODEL, file: out(s.picture), key, prompt, refs, check, geography: bible.geography || '', transform: transformOf(s), charge: money.charge, log, warn }))) report.fallbacks.push(`${s.id}: image failed`);
+  if (!(await makeImage({ modelName: IMAGE_MODEL, file: out(s.picture), key, prompt, refs, check, geography: bible.geography || '', transform: transformOf(s), soft: ['GEOGRAPHY', 'LOCATION', 'WRECK'], attempts: 2, charge: money.charge, log, warn }))) report.fallbacks.push(`${s.id}: image failed`);
 });
 for (const s of shots) if (!has(out(s.picture))) {
   const prev = shots[shots.indexOf(s) - 1];
