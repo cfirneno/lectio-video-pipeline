@@ -389,16 +389,15 @@
       "shots": [
         {
           "mode": "video",
-          "set": "LOCATION",
+          "set": "ROAD_OUT",
           "angle": {
-            "TRUCK": 1,
-            "LOCATION": 4
+            "TRUCK": 1
           },
           "with": [
             "TRUCK"
           ],
           "setup": "truck-stage3",
-          "shot": "low head-on shot from the road outside the base: the truck nearer now, its steel wall reaching almost to the ground, a heavy dust plume behind, open desert around it",
+          "shot": "low head-on shot on the desert road: the truck nearer now, its steel wall reaching almost to the ground, a heavy dust plume behind, open desert around it",
           "motion": "the truck bears straight down on the camera, getting larger, dust boiling",
           "must": []
         }
@@ -420,17 +419,17 @@
       "shots": [
         {
           "mode": "video",
-          "set": "LOCATION",
+          "set": "ROAD_OUT",
           "angle": {
-            "TRUCK": 1,
-            "LOCATION": 1
+            "TRUCK": 1
           },
           "with": [
             "TRUCK"
           ],
           "setup": "slot-far",
           "shot": "extreme telephoto close-up of only the narrow vision slit in the truck's rusty steel front, darkness behind it",
-          "motion": "the slit bounces and shakes in frame as the truck moves, heat shimmer"
+          "motion": "the slit bounces and shakes in frame as the truck moves, heat shimmer",
+          "must": []
         }
       ],
       "sfx": [
@@ -516,16 +515,15 @@
       "shots": [
         {
           "mode": "video",
-          "set": "LOCATION",
+          "set": "ROAD_OUT",
           "angle": {
-            "TRUCK": 2,
-            "LOCATION": 4
+            "TRUCK": 2
           },
           "with": [
             "TRUCK"
           ],
           "setup": "truck-side",
-          "shot": "side tracking shot from the desert beside the road outside the base: the truck at speed, its flat rusty steel wall covering the whole front of the cab clearly visible from the side, the dump bed heaped under its tarp, dust streaming behind",
+          "shot": "side tracking shot from the desert beside the road : the truck at speed, its flat rusty steel wall covering the whole front of the cab clearly visible from the side, the dump bed heaped under its tarp, dust streaming behind",
           "motion": "the truck barrels along, tarp snapping, dust streaming",
           "must": []
         }
@@ -651,16 +649,15 @@
         },
         {
           "mode": "video",
-          "set": "LOCATION",
+          "set": "ROAD_OUT",
           "angle": {
-            "TRUCK": 1,
-            "LOCATION": 4
+            "TRUCK": 1
           },
           "with": [
             "TRUCK"
           ],
           "setup": "slot-wide",
-          "shot": "telephoto head-on from the road outside the base: the truck's whole steel front as bullet strikes spark at scattered points all over it, dust behind, open desert around",
+          "shot": "telephoto head-on on the desert road: the truck's whole steel front as bullet strikes spark at scattered points all over it, dust behind, open desert around",
           "motion": "sparks burst at random points all over the plate while the truck keeps coming",
           "must": []
         }
@@ -685,25 +682,23 @@
       "shots": [
         {
           "mode": "video",
-          "set": "LOCATION",
+          "set": "ROAD_OUT",
           "angle": {
-            "TRUCK": 1,
-            "LOCATION": 4
+            "TRUCK": 1
           },
           "with": [
             "TRUCK"
           ],
           "setup": "slot-mid",
-          "shot": "closer telephoto head-on from the road outside the base on the steel front: a tighter cluster of bullet strikes sparking around the slit",
+          "shot": "closer telephoto head-on on the desert road on the steel front: a tighter cluster of bullet strikes sparking around the slit",
           "motion": "impacts walk in toward the slit, sparks and paint chips flying",
           "must": []
         },
         {
           "mode": "video",
-          "set": "LOCATION",
+          "set": "ROAD_OUT",
           "angle": {
-            "TRUCK": 1,
-            "LOCATION": 1
+            "TRUCK": 1
           },
           "with": [
             "TRUCK"
@@ -742,7 +737,7 @@
           "set": "LOCATION",
           "angle": {
             "TRUCK": 1,
-            "LOCATION": 5
+            "LOCATION": 3
           },
           "with": [
             "TRUCK"
@@ -840,10 +835,9 @@
         },
         {
           "mode": "video",
-          "set": "LOCATION",
+          "set": "ROAD_OUT",
           "angle": {
-            "TRUCK": 1,
-            "LOCATION": 1
+            "TRUCK": 1
           },
           "with": [
             "TRUCK"

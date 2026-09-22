@@ -26,7 +26,7 @@
     },
     "M2": {
       "kind": "prop",
-      "look": "an M2 .50 caliber heavy machine gun: a very large belt-fed machine gun with a long thick barrel, mounted on a pintle post, with two rear spade grips and a butterfly trigger between them, an ammunition can feeding a belt into its left side, standing on a sandbag parapet"
+      "look": "an M2 .50 caliber heavy machine gun: a very large belt-fed machine gun with a long thick barrel, on a low tripod mount, with two rear spade grips and a butterfly trigger between them, an ammunition can feeding a belt into its left side, set on a sandbag parapet"
     },
     "LOCATION": {
       "kind": "location",
@@ -46,7 +46,6 @@
           ]
         },
         "from the top of the tower looking out over the wall: the two barrier trucks across the opening directly below, the empty road running away from them to the highway, the desert flat to the horizon; the camera is ON the tower so no tower is in frame",
-        "from the road OUTSIDE the wall, camera at road level looking away from the base toward the highway: the empty straight dirt road to the horizon, open flat desert on both sides, nothing of the base or its wall in frame",
         {
           "find": "the wooden guard tower",
           "pad": 0.6
@@ -82,6 +81,11 @@
       "must": [
         "two heavy machine guns that are the same gun and the same mount as the M2 reference picture, on the parapet, pointing out"
       ]
+    },
+    "ROAD_OUT": {
+      "kind": "set",
+      "look": "a straight dirt road across flat open desert under a hazy sky, heat shimmer, nothing built anywhere in sight: no wall, no buildings, no tower, no vehicles",
+      "life": "heat shimmer, a light wind lifting dust off the road, thin clouds"
     },
     "WRECK": {
       "kind": "set",
