@@ -68,8 +68,16 @@ const falHeaders = () => ({ authorization: `Key ${need('FAL_KEY')}`, 'content-ty
 export async function fal(model, input, ticket, label = ticket) {
   let job = readJson(ticket, null);
   if (!job) {
-    const sub = await fetch(`https://queue.fal.run/${model}`, { method: 'POST', headers: falHeaders(), body: JSON.stringify(input) });
-    if (!sub.ok) throw new Error(`fal submit ${sub.status} (${model}): ${(await sub.text()).slice(0, 500)}`);
+    // fal locks the account for a while after the balance hits zero, and the lock can lag a
+    // top-up by many minutes. Wait it out rather than failing the shot.
+    let sub, text = '';
+    for (let waited = 0; ; waited += 60) {
+      sub = await fetch(`https://queue.fal.run/${model}`, { method: 'POST', headers: falHeaders(), body: JSON.stringify(input) });
+      if (sub.ok) break;
+      text = (await sub.text()).slice(0, 500);
+      if (sub.status === 403 && /locked|balance|TOP_UP/i.test(text) && waited < 15 * 60) { console.warn(`[fal] account locked (${text.slice(0, 80)}...) - waiting 60s (${waited / 60} min so far)`); await sleep(60_000); continue; }
+      throw new Error(`fal submit ${sub.status} (${model}): ${text}`);
+    }
     const j = await sub.json();
     job = { status_url: j.status_url, response_url: j.response_url };
     writeJson(ticket, job);
@@ -82,9 +90,16 @@ export async function fal(model, input, ticket, label = ticket) {
     if (Date.now() - t0 > 30 * 60_000) throw new Error(`fal ${label}: still running after 30 min; re-run to keep waiting on the same job`);
     await sleep(4000);
   }
-  const res = await fetch(job.response_url, { headers: falHeaders() });
+  let res, rtext = '';
+  for (let waited = 0; ; waited += 60) {
+    res = await fetch(job.response_url, { headers: falHeaders() });
+    if (res.ok) break;
+    rtext = (await res.text()).slice(0, 500);
+    if (res.status === 403 && /locked|balance|TOP_UP/i.test(rtext) && waited < 15 * 60) { console.warn(`[fal] account locked while fetching result - waiting 60s`); await sleep(60_000); continue; }
+    fs.rmSync(ticket, { force: true });
+    throw new Error(`fal result ${res.status} (${label}): ${rtext}`);
+  }
   fs.rmSync(ticket, { force: true });
-  if (!res.ok) throw new Error(`fal result ${res.status} (${label}): ${(await res.text()).slice(0, 500)}`);
   return res.json();
 }
 
