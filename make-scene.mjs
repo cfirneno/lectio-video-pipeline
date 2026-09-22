@@ -264,6 +264,7 @@ function shotPrompt(s, legend) {
     `Photograph a new shot in exactly this location with exactly these people and vehicles, changed in no detail (the SAME actors with the SAME faces as the reference portraits, same clothing and gear, same construction, same colours, same weapons), only the camera has moved:`,
     `${s.shot}.`,
     Object.keys(transformOf(s)).length ? `Deliberate changes in this shot: ${Object.entries(transformOf(s)).map(([k, v]) => `${k} is shown ${v}`).join('; ')}.` : '',
+    (s.must || []).length ? `The shot MUST show: ${s.must.join('; ')}.` : '',
     people.length ? `People in this shot: ${people.join('; ')}.` : '',
     life ? `In the background, small and unobtrusive: ${life}.` : '',
     kindOf(s.set) !== 'person' && bible.geography ? `Fixed geography of the location: ${bible.geography}` : '',
@@ -280,7 +281,7 @@ await pool([...byPicture.values()], 4, async (s) => {
   const { refs, legend, check } = refsFor(s);
   const prompt = shotPrompt(s, legend);
   const key = hash(prompt, refs.map((f) => readJson(`${f}.key`, null)), IMAGE_MODEL);
-  if (!(await makeImage({ modelName: IMAGE_MODEL, file: out(s.picture), key, prompt, refs, check, geography: bible.geography || '', transform: transformOf(s), soft: ['GEOGRAPHY', 'LOCATION', 'WRECK'], attempts: 2, charge: money.charge, log, warn }))) report.fallbacks.push(`${s.id}: image failed`);
+  if (!(await makeImage({ modelName: IMAGE_MODEL, file: out(s.picture), key, prompt, refs, check, geography: bible.geography || '', transform: transformOf(s), must: s.must || [], attempts: 3, charge: money.charge, log, warn }))) report.fallbacks.push(`${s.id}: image failed`);
 });
 for (const s of shots) if (!has(out(s.picture))) {
   const prev = shots[shots.indexOf(s) - 1];

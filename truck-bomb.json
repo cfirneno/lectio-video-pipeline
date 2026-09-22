@@ -72,7 +72,10 @@
           "in": "fade",
           "angle": {
             "LOCATION": 2
-          }
+          },
+          "must": [
+            "exactly two barrier trucks parked nose to tail across the opening in the wall"
+          ]
         }
       ]
     },
@@ -91,7 +94,10 @@
           ],
           "setup": "tower-foot",
           "shot": "Connors at the foot of the tower with a notebook, looking up at the cabin; medium wide shot from the side, the busy base behind him",
-          "motion": "he glances up, shades his eyes; a jeep passes behind him; slow push in"
+          "motion": "he glances up, shades his eyes; a jeep passes behind him; slow push in",
+          "must": [
+            "exactly two barrier trucks parked nose to tail across the opening in the wall"
+          ]
         },
         {
           "mode": "video",
@@ -104,7 +110,10 @@
           ],
           "setup": "int-setup",
           "shot": "inside the tower cabin from behind the two men: both mounted guns pointing out over the parapet, Boghadair at the left gun scanning, the rooftops of the base and the road below",
-          "motion": "Boghadair slowly sweeps his gun across the horizon; below, vehicles move and a soldier walks; clouds drift"
+          "motion": "Boghadair slowly sweeps his gun across the horizon; below, vehicles move and a soldier walks; clouds drift",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ],
       "seconds": 10
@@ -134,7 +143,10 @@
           "motion": "the distant truck completes its turn and starts toward the camera, its dust trail growing",
           "angle": {
             "LOCATION": 1
-          }
+          },
+          "must": [
+            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base"
+          ]
         },
         {
           "mode": "video",
@@ -235,7 +247,10 @@
           ],
           "setup": "int-two",
           "shot": "inside the cabin from the side: Connors dropping in behind the right-hand mounted gun and grabbing its spade grips, Boghadair already at the left gun, both facing out over the parapet",
-          "motion": "he throws himself behind the gun, racks the charging handle and swings the barrel toward the road"
+          "motion": "he throws himself behind the gun, racks the charging handle and swings the barrel toward the road",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ]
     },
@@ -257,7 +272,10 @@
           ],
           "setup": "talk-CONNORS",
           "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
-          "motion": "he tracks the distant truck with the gun, adjusting his aim, glancing sideways at Boghadair as he speaks, jaw working"
+          "motion": "he tracks the distant truck with the gun, adjusting his aim, glancing sideways at Boghadair as he speaks, jaw working",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ],
       "sfx": [
@@ -286,7 +304,10 @@
           ],
           "setup": "talk-BOGHADAIR",
           "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along its thick barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
-          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus"
+          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ],
       "sfx": [
@@ -316,7 +337,11 @@
           ],
           "setup": "truck-stage2",
           "shot": "telephoto from the tower: the truck coming down the road, still distant, a growing dust cloud behind it",
-          "motion": "the truck accelerates toward the camera, dust thickening behind it"
+          "motion": "the truck accelerates toward the camera, dust thickening behind it",
+          "must": [
+            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base",
+            "exactly two barrier trucks parked nose to tail across the opening in the wall"
+          ]
         }
       ],
       "sfx": [
@@ -345,7 +370,10 @@
           ],
           "setup": "talk-BOGHADAIR",
           "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along its thick barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
-          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus"
+          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ],
       "sfx": [
@@ -375,7 +403,10 @@
           ],
           "setup": "truck-stage3",
           "shot": "low head-on shot from the road: the truck nearer now, its steel wall reaching almost to the ground, a heavy dust plume behind",
-          "motion": "the truck bears straight down on the camera, getting larger, dust boiling"
+          "motion": "the truck bears straight down on the camera, getting larger, dust boiling",
+          "must": [
+            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base"
+          ]
         }
       ],
       "sfx": [
@@ -434,7 +465,10 @@
           ],
           "setup": "talk-CONNORS",
           "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
-          "motion": "he tracks the distant truck with the gun, adjusting his aim, glancing sideways at Boghadair as he speaks, jaw working"
+          "motion": "he tracks the distant truck with the gun, adjusting his aim, glancing sideways at Boghadair as he speaks, jaw working",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ],
       "sfx": [
@@ -463,7 +497,10 @@
           ],
           "setup": "talk-BOGHADAIR",
           "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along its thick barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
-          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus"
+          "motion": "he tracks the truck along the sights without looking away, racks the charging handle, speaks through clenched focus",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ],
       "sfx": [
@@ -523,7 +560,10 @@
           ],
           "setup": "talk-CONNORS",
           "shot": "medium shot from Connors' left side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along the barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
-          "motion": "he fires a short burst, the gun bucking, brass flying, smoke, then shouts across to Boghadair"
+          "motion": "he fires a short burst, the gun bucking, brass flying, smoke, then shouts across to Boghadair",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ],
       "sfx": [
@@ -553,7 +593,10 @@
           ],
           "setup": "talk-BOGHADAIR",
           "shot": "medium shot from Boghadair's right side inside the cabin, three-quarter profile, both hands on the spade grips of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), sighting along its thick barrel out over the parapet toward the road, mouth clearly visible; the base rooftops and the road far below beyond the parapet",
-          "motion": "he fires controlled bursts, the gun bucking, brass flying, smoke, speaking between bursts without taking his eye off the sights"
+          "motion": "he fires controlled bursts, the gun bucking, brass flying, smoke, speaking between bursts without taking his eye off the sights",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         }
       ],
       "sfx": [
@@ -601,7 +644,10 @@
           ],
           "setup": "int-two",
           "shot": "inside the cabin from the side: both men firing their mounted guns out over the parapet, big muzzle flashes, brass flying, smoke",
-          "motion": "both guns hammer in bursts, the men shaking with the recoil, casings pouring onto the floor"
+          "motion": "both guns hammer in bursts, the men shaking with the recoil, casings pouring onto the floor",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         },
         {
           "mode": "video",
@@ -615,7 +661,11 @@
           ],
           "setup": "slot-wide",
           "shot": "telephoto head-on: the truck's whole steel front as bullet strikes spark at scattered points all over it, dust behind",
-          "motion": "sparks burst at random points all over the plate while the truck keeps coming"
+          "motion": "sparks burst at random points all over the plate while the truck keeps coming",
+          "must": [
+            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base",
+            "exactly two barrier trucks parked nose to tail across the opening in the wall"
+          ]
         }
       ],
       "seconds": 10
@@ -648,7 +698,10 @@
           ],
           "setup": "slot-mid",
           "shot": "closer telephoto on the steel front: a tighter cluster of bullet strikes sparking around the slit",
-          "motion": "impacts walk in toward the slit, sparks and paint chips flying"
+          "motion": "impacts walk in toward the slit, sparks and paint chips flying",
+          "must": [
+            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base"
+          ]
         },
         {
           "mode": "video",
@@ -662,7 +715,10 @@
           ],
           "setup": "slot-close",
           "shot": "extreme close-up of the slit itself, sparks bursting on the steel just beside it",
-          "motion": "strikes land closer and closer to the slit, one spark right at its edge"
+          "motion": "strikes land closer and closer to the slit, one spark right at its edge",
+          "must": [
+            "only the rusty steel front of the bomb truck, filling the frame"
+          ]
         }
       ],
       "seconds": 7
@@ -698,7 +754,11 @@
           ],
           "setup": "truck-fence",
           "shot": "head-on from the opening in the wall: the truck at high speed, enormous dust plume, the blast wall in the foreground",
-          "motion": "the truck charges toward the camera at full speed, bouncing, dust filling the frame behind it"
+          "motion": "the truck charges toward the camera at full speed, bouncing, dust filling the frame behind it",
+          "must": [
+            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base",
+            "exactly two barrier trucks parked nose to tail across the opening in the wall"
+          ]
         },
         {
           "mode": "video",
@@ -712,7 +772,10 @@
           ],
           "setup": "radio",
           "shot": "inside the cabin: Connors shouting into a handheld military radio held to his mouth, one hand still on his gun; Boghadair firing beside him",
-          "motion": "he yells into the radio, flinching with each burst"
+          "motion": "he yells into the radio, flinching with each burst",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         },
         {
           "mode": "video",
@@ -722,7 +785,10 @@
           "motion": "soldiers run hard for cover, a jeep skids to a stop, dust kicks up",
           "angle": {
             "LOCATION": 2
-          }
+          },
+          "must": [
+            "exactly two barrier trucks parked nose to tail across the opening in the wall"
+          ]
         }
       ],
       "seconds": 12
@@ -758,7 +824,10 @@
           ],
           "setup": "truck-close",
           "shot": "from the tower over the parapet: the truck enormous and very close beyond the wall, its steel front filling most of the frame, dust everywhere",
-          "motion": "the truck rushes at the wall, filling more and more of the frame"
+          "motion": "the truck rushes at the wall, filling more and more of the frame",
+          "must": [
+            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base"
+          ]
         },
         {
           "mode": "video",
@@ -771,7 +840,10 @@
           ],
           "setup": "bog-eye",
           "shot": "extreme close-up of Boghadair's eye and cheek along the sights of a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips (a big mounted gun, not a bipod light machine gun, not a rifle), steady, the barrel and muzzle out of focus ahead",
-          "motion": "his eye holds on the sights, the gun fires, the muzzle flash lights his face"
+          "motion": "his eye holds on the sights, the gun fires, the muzzle flash lights his face",
+          "must": [
+            "a very large belt-fed M2 .50 caliber heavy machine gun on a pintle mount with two rear spade grips, the man's hands on the grips"
+          ]
         },
         {
           "mode": "video",
@@ -788,7 +860,10 @@
           "motion": "a single strike enters the slit and a blinding white flash erupts from inside",
           "transform": {
             "TRUCK": "a white flash erupting from its vision slit"
-          }
+          },
+          "must": [
+            "only the rusty steel front of the bomb truck, filling the frame"
+          ]
         }
       ],
       "seconds": 7
@@ -817,7 +892,10 @@
           },
           "angle": {
             "LOCATION": 1
-          }
+          },
+          "must": [
+            "exactly two barrier trucks parked nose to tail across the opening in the wall"
+          ]
         },
         {
           "mode": "video",
@@ -830,7 +908,10 @@
           "motion": "the blast wave slams the tower and it tumbles through the air with debris; roofs tear off the buildings behind",
           "transform": {
             "TOWER": "the one and only tower, being torn off its legs by the blast wave and thrown into the air, splintering"
-          }
+          },
+          "must": [
+            "exactly two barrier trucks parked nose to tail across the opening in the wall"
+          ]
         }
       ]
     },
