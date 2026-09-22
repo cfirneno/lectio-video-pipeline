@@ -144,6 +144,23 @@ export async function continuityCheck(refs, file, entities, geography = '', tran
   }
 }
 
+// Where is <what> in this picture? Returns { x, y, w, h } as fractions of the image, or null.
+export async function locate(file, what) {
+  const base = process.env.AI_INTEGRATIONS_OPENAI_BASE_URL, key = process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
+  if (!base || !key) return null;
+  const content = [
+    { type: 'text', text: `Find ${what} in this image. Answer ONLY with JSON giving its bounding box as fractions of the image width and height: {"found": true|false, "x": left, "y": top, "w": width, "h": height}. Include the whole object with a little margin.` },
+    { type: 'image_url', image_url: { url: dataUri(file), detail: 'high' } }];
+  try {
+    const res = await fetch(`${base.replace(/\/$/, '')}/chat/completions`, { method: 'POST', headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ model: process.env.OPENAI_VISION_MODEL || process.env.OPENAI_MODEL || 'gpt-5.4', response_format: { type: 'json_object' }, messages: [{ role: 'user', content }] }) });
+    if (!res.ok) throw new Error(`${res.status}`);
+    const j = JSON.parse((await res.json()).choices[0].message.content);
+    if (!j.found) return null;
+    return { x: +j.x, y: +j.y, w: +j.w, h: +j.h };
+  } catch { return null; }
+}
+
 // One picture from a prompt plus 0..n reference pictures, checked for continuity against
 // them and regenerated (with the complaint added) when it fails. Returns true on success.
 // `check` = [{ name, kind, look }] describing what each reference is, in the same order as refs.

@@ -14,7 +14,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { has, hash, readJson, writeJson, fresh, stamp, pool, ledger, makeImage, contactSheet, ffmpeg, log as L, warn as W } from './lib.mjs';
+import { has, hash, readJson, writeJson, fresh, stamp, pool, ledger, makeImage, contactSheet, ffmpeg, locate, log as L, warn as W } from './lib.mjs';
 
 const log = L('bible'), warn = W('bible');
 const argv = process.argv.slice(2);
@@ -96,11 +96,46 @@ for (const [name, n] of picks) {
   }
 }
 
+// A crop rectangle, 16:9, from either fixed fractions or a "find" (the vision model locates the thing).
+async function cropRect(master, spec) {
+  let r;
+  if (spec.crop) { const [x, y, w, h] = spec.crop; r = { x, y, w, h }; }
+  else {
+    const box = await locate(master, spec.find);
+    if (!box) return null;
+    const pad = spec.pad ?? 0.3;
+    r = { x: box.x - box.w * pad, y: box.y - box.h * pad, w: box.w * (1 + 2 * pad), h: box.h * (1 + 2 * pad) };
+  }
+  // widen to 16:9 (in image fractions, assuming a 16:9 master), then clamp inside the picture
+  if (r.w / r.h < 1) r.w = r.h; if (r.w / r.h > 1) r.h = r.w; // square first, so tall things get room
+  r.w = Math.min(1, r.w); r.h = Math.min(1, r.h);
+  if (r.w < r.h) r.w = r.h; else r.h = r.w; // equal fractions == 16:9 on a 16:9 image
+  r.x = Math.max(0, Math.min(1 - r.w, r.x + (spec.crop ? 0 : (r.w - r.w) / 2))); r.y = Math.max(0, Math.min(1 - r.h, r.y));
+  return r;
+}
+async function cropTo(master, file, spec, label) {
+  const r = await cropRect(master, spec);
+  if (!r) { warn(`${label}: could not locate "${spec.find}" - not cropped`); return false; }
+  ffmpeg(['-i', master, '-vf', `crop=iw*${r.w.toFixed(4)}:ih*${r.h.toFixed(4)}:iw*${r.x.toFixed(4)}:ih*${r.y.toFixed(4)},scale=1920:1080:flags=lanczos`, '-q:v', '2', file], DIR);
+  log(`${label} cropped from the master${spec.find ? ` around "${spec.find}"` : ''} (no generation)`);
+  return true;
+}
+
+// 0. Masters that are CROPS of another approved master ("crop_of"): the thing is then the same by construction.
+for (const [name, e] of Object.entries(bible.entities)) {
+  if (!e.crop_of) continue;
+  const src = path.join(DIR, e.crop_of.from, 'master.jpg'), dst = path.join(dir(name), 'master.jpg');
+  if (!has(src)) { log(`${name}: waiting for ${e.crop_of.from} to be approved (it is cropped from it)`); continue; }
+  const key = hash('crop_of', e.crop_of, readJson(`${src}.key`, null));
+  if (fresh(dst, key)) continue;
+  if (await cropTo(src, dst, e.crop_of, `${name}/master.jpg`)) { stamp(dst, key); for (const f of fs.readdirSync(dir(name))) if (/^angle_/.test(f)) fs.rmSync(path.join(DIR, name, f), { force: true }); }
+}
+
 // 1. Candidates for anything not yet approved. An entity that "uses" others (a base that
 //    contains the tower) waits until they are approved, and is then generated FROM their
 //    masters and checked against them - so the tower in the base picture IS the tower.
 const approvedNow = (n) => has(path.join(DIR, n, 'master.jpg'));
-const pending = Object.entries(bible.entities).filter(([name]) => !approvedNow(name));
+const pending = Object.entries(bible.entities).filter(([name, e]) => !approvedNow(name) && !e.crop_of);
 const deps = (e) => [...(e.from ? [e.from] : []), ...(e.uses || [])];
 const ready = pending.filter(([, e]) => deps(e).every(approvedNow));
 const waiting = pending.filter(([, e]) => !deps(e).every(approvedNow));
@@ -129,7 +164,7 @@ if (ready.length) {
 
 // 2. Extra angles, each derived FROM the approved master so it is the same thing.
 if (ANGLES) {
-  const jobs = [];
+  const jobs = [], cropJobs = [];
   for (const [name, e] of Object.entries(bible.entities)) {
     const master = path.join(DIR, name, 'master.jpg');
     if (!has(master)) { warn(`${name}: not approved yet, skipping angles`); continue; }
@@ -139,17 +174,14 @@ if (ANGLES) {
       if (fs.existsSync(`${file}.pinned`)) return;
       // An angle written as { "crop": [x, y, w, h] } (fractions of the master, 0-1) is CUT from the
       // master by ffmpeg, never generated: the geometry cannot drift. Needs a hi-res master.
-      if (angle && typeof angle === 'object' && angle.crop) {
-        const [x, y, w, h] = angle.crop;
-        const key = hash('crop', angle.crop, readJson(`${master}.key`, null));
-        if (!fresh(file, key)) {
-          ffmpeg(['-i', master, '-vf', `crop=iw*${w}:ih*${h}:iw*${x}:ih*${y},scale=1920:1080:flags=lanczos`, '-q:v', '2', file], DIR);
-          stamp(file, key); log(`${name}/angle_${i + 1}.jpg cropped from the master (no generation)`);
-        }
-        return;
-      }
+      if (angle && typeof angle === 'object' && (angle.crop || angle.find)) { cropJobs.push({ name, angle, i: i + 1, master, file }); return; }
       jobs.push({ name, e, angle, i: i + 1, master });
     });
+  }
+  for (const { name, angle, i, master, file } of cropJobs) {
+    const key = hash('crop', angle, readJson(`${master}.key`, null));
+    if (fresh(file, key)) continue;
+    if (await cropTo(master, file, angle, `${name}/angle_${i}.jpg`)) stamp(file, key);
   }
   await pool(jobs, 4, async ({ name, e, angle, i, master }) => {
     const uses = (e.uses || []).filter(approvedNow);
