@@ -28,7 +28,7 @@ const files = argv.filter((a, i) => !a.startsWith('--') && !['--until', '--redo'
 if (files.length < 2) { console.error('usage: node make-scene.mjs bible.json scene.json [--plan] [--draft] [--until stills] [--redo ids]'); process.exit(1); }
 const [biblePath, scenePath] = files;
 const flag = (n) => argv.includes(n), opt = (n) => (argv.includes(n) ? argv[argv.indexOf(n) + 1] : null);
-const PLAN = flag('--plan'), DRAFT = flag('--draft'), FORCE = flag('--force'), UNTIL = opt('--until'), REDO = (opt('--redo') || '').split(',').filter(Boolean);
+const PLAN = flag('--plan'), DRAFT = flag('--draft'), FORCE = flag('--force'), RETRY_FAILED = flag('--retry-failed'), UNTIL = opt('--until'), REDO = (opt('--redo') || '').split(',').filter(Boolean);
 
 const bible = JSON.parse(fs.readFileSync(biblePath, 'utf8'));
 const scene = JSON.parse(fs.readFileSync(scenePath, 'utf8'));
@@ -55,7 +55,9 @@ const STYLE = bible.style || '';
 
 const money = ledger(out('cost.json'));
 const report = { slug: scene.slug, fallbacks: [], tools: { images: IMAGE_MODEL, video: VIDEO_MODEL, lipsync: LIPSYNC_MODEL, tts: TTS_MODEL } };
-const failed = readJson(out('failed.json'), {});
+// Shots a model REFUSED (content filter etc.). Balance/lock errors are never remembered as refusals.
+const isBalance = (msg) => /locked|balance|TOP_UP/i.test(String(msg));
+const failed = RETRY_FAILED ? {} : Object.fromEntries(Object.entries(readJson(out('failed.json'), {})).filter(([, why]) => !isBalance(why)));
 
 // ───────────────────────────── scene model ─────────────────────────────
 
@@ -319,7 +321,7 @@ async function makeClip(s, key, input, model, seconds, perSec, kind) {
     return file;
   } catch (e) {
     warn(`${s.id} failed, will be a moving still: ${e.message.slice(0, 300)}`);
-    failed[s.id] = e.message.slice(0, 160); writeJson(out('failed.json'), failed);
+    if (!isBalance(e.message)) { failed[s.id] = e.message.slice(0, 160); writeJson(out('failed.json'), failed); }
     report.fallbacks.push(`${s.id}: ${kind} failed -> moving still`);
     return null;
   }
