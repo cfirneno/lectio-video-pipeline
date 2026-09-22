@@ -12,6 +12,7 @@
 //   node make-scene.mjs bible.json scene.json                   everything
 //   node make-scene.mjs bible.json scene.json --draft           no video models: every shot is a moving still
 //   node make-scene.mjs bible.json scene.json --redo n1_2,d3_1  remake those shots' pictures
+//   node make-scene.mjs bible.json scene.json --force        render with the pictures as they are (no early stop)
 //   MAX_COST=40 caps estimated fal spend for the run.
 //
 // Needs bible/<NAME>/master.jpg for every entity the scene uses (make-bible.mjs).
@@ -27,7 +28,7 @@ const files = argv.filter((a, i) => !a.startsWith('--') && !['--until', '--redo'
 if (files.length < 2) { console.error('usage: node make-scene.mjs bible.json scene.json [--plan] [--draft] [--until stills] [--redo ids]'); process.exit(1); }
 const [biblePath, scenePath] = files;
 const flag = (n) => argv.includes(n), opt = (n) => (argv.includes(n) ? argv[argv.indexOf(n) + 1] : null);
-const PLAN = flag('--plan'), DRAFT = flag('--draft'), UNTIL = opt('--until'), REDO = (opt('--redo') || '').split(',').filter(Boolean);
+const PLAN = flag('--plan'), DRAFT = flag('--draft'), FORCE = flag('--force'), UNTIL = opt('--until'), REDO = (opt('--redo') || '').split(',').filter(Boolean);
 
 const bible = JSON.parse(fs.readFileSync(biblePath, 'utf8'));
 const scene = JSON.parse(fs.readFileSync(scenePath, 'utf8'));
@@ -281,15 +282,17 @@ let judged = 0, failedEarly = 0;
 await pool([...byPicture.values()], 4, async (s) => {
   // Circuit breaker: when the first pictures mostly fail, the rules and the masters disagree;
   // stop instead of paying for thirty pictures that cannot pass.
-  if (judged >= 6 && failedEarly >= 4) return;
+  if (!FORCE && judged >= 6 && failedEarly >= 4) return;
   const { refs, legend, check } = refsFor(s);
   const prompt = shotPrompt(s, legend);
   const key = hash(prompt, refs.map((f) => readJson(`${f}.key`, null)), IMAGE_MODEL);
+  const wasCached = fresh(out(s.picture), key); // only pictures made in THIS run count toward the breaker
   if (!(await makeImage({ modelName: IMAGE_MODEL, file: out(s.picture), key, prompt, refs, check, geography: bible.geography || '', transform: transformOf(s), must: s.must || [], attempts: 2, charge: money.charge, log, warn }))) report.fallbacks.push(`${s.id}: image failed`);
+  if (wasCached) return;
   const v = readJson(`${out(s.picture)}.check.json`, null);
   judged++; if (v && !v.ok) failedEarly++;
 });
-if (judged >= 6 && failedEarly >= 4) { console.error(`[scene] STOPPED EARLY: ${failedEarly} of the first ${judged} pictures failed continuity. The rules and the bible masters disagree - fix the masters or the rules before spending more.`); process.exit(3); }
+if (!FORCE && judged >= 6 && failedEarly >= 4) { console.error(`[scene] STOPPED EARLY: ${failedEarly} of the first ${judged} pictures failed continuity. The rules and the bible masters disagree - fix the masters or the rules before spending more.`); process.exit(3); }
 for (const s of shots) if (!has(out(s.picture))) {
   const prev = shots[shots.indexOf(s) - 1];
   if (prev && has(out(prev.picture))) { s.picture = prev.picture; report.fallbacks.push(`${s.id}: no picture; reused ${prev.id}`); } else s.picture = null;
