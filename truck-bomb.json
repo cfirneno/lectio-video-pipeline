@@ -139,14 +139,12 @@
             "TRUCK"
           ],
           "setup": "truck-far",
-          "shot": "from ground level at the foot of the tower, a long telephoto look out through the opening in the wall past the two barrier trucks: the truck tiny and far away, turning off the highway onto the road, a thin dust trail behind it, heavy heat shimmer",
+          "shot": "from the top of the tower, a long telephoto look out over the barrier trucks along the road: the truck tiny and far away, turning off the highway onto the road, a thin dust trail behind it, heavy heat shimmer",
           "motion": "the distant truck completes its turn and starts toward the camera, its dust trail growing",
           "angle": {
-            "LOCATION": 1
+            "LOCATION": 3
           },
-          "must": [
-            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base"
-          ]
+          "must": []
         },
         {
           "mode": "video",
@@ -330,18 +328,15 @@
           "set": "LOCATION",
           "angle": {
             "TRUCK": 1,
-            "LOCATION": 1
+            "LOCATION": 3
           },
           "with": [
             "TRUCK"
           ],
           "setup": "truck-stage2",
-          "shot": "telephoto from the tower: the truck coming down the road, still distant, a growing dust cloud behind it",
+          "shot": "from the top of the tower looking out over the barrier trucks: the truck still distant on the road, a growing dust cloud behind it",
           "motion": "the truck accelerates toward the camera, dust thickening behind it",
-          "must": [
-            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base",
-            "exactly two barrier trucks parked nose to tail across the opening in the wall"
-          ]
+          "must": []
         }
       ],
       "sfx": [
@@ -396,17 +391,15 @@
           "set": "LOCATION",
           "angle": {
             "TRUCK": 1,
-            "LOCATION": 1
+            "LOCATION": 4
           },
           "with": [
             "TRUCK"
           ],
           "setup": "truck-stage3",
-          "shot": "low head-on shot from the road: the truck nearer now, its steel wall reaching almost to the ground, a heavy dust plume behind",
+          "shot": "low head-on shot from the road outside the base: the truck nearer now, its steel wall reaching almost to the ground, a heavy dust plume behind, open desert around it",
           "motion": "the truck bears straight down on the camera, getting larger, dust boiling",
-          "must": [
-            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base"
-          ]
+          "must": []
         }
       ],
       "sfx": [
@@ -523,14 +516,15 @@
           "set": "LOCATION",
           "angle": {
             "TRUCK": 2,
-            "LOCATION": 1
+            "LOCATION": 4
           },
           "with": [
             "TRUCK"
           ],
           "setup": "truck-side",
-          "shot": "side tracking shot of the truck at speed on the road, its huge flat rusty steel wall covering the whole front of the cab clearly visible from the side, the dump bed heaped under its tarp, a wall of dust streaming behind",
-          "motion": "the truck barrels along, tarp snapping, dust streaming"
+          "shot": "side tracking shot from the desert beside the road outside the base: the truck at speed, its flat rusty steel wall covering the whole front of the cab clearly visible from the side, the dump bed heaped under its tarp, dust streaming behind",
+          "motion": "the truck barrels along, tarp snapping, dust streaming",
+          "must": []
         }
       ],
       "sfx": [
@@ -654,18 +648,15 @@
           "set": "LOCATION",
           "angle": {
             "TRUCK": 1,
-            "LOCATION": 1
+            "LOCATION": 4
           },
           "with": [
             "TRUCK"
           ],
           "setup": "slot-wide",
-          "shot": "telephoto head-on: the truck's whole steel front as bullet strikes spark at scattered points all over it, dust behind",
+          "shot": "telephoto head-on from the road outside the base: the truck's whole steel front as bullet strikes spark at scattered points all over it, dust behind, open desert around",
           "motion": "sparks burst at random points all over the plate while the truck keeps coming",
-          "must": [
-            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base",
-            "exactly two barrier trucks parked nose to tail across the opening in the wall"
-          ]
+          "must": []
         }
       ],
       "seconds": 10
@@ -691,17 +682,15 @@
           "set": "LOCATION",
           "angle": {
             "TRUCK": 1,
-            "LOCATION": 1
+            "LOCATION": 4
           },
           "with": [
             "TRUCK"
           ],
           "setup": "slot-mid",
-          "shot": "closer telephoto on the steel front: a tighter cluster of bullet strikes sparking around the slit",
+          "shot": "closer telephoto head-on from the road outside the base on the steel front: a tighter cluster of bullet strikes sparking around the slit",
           "motion": "impacts walk in toward the slit, sparks and paint chips flying",
-          "must": [
-            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base"
-          ]
+          "must": []
         },
         {
           "mode": "video",
@@ -747,18 +736,15 @@
           "set": "LOCATION",
           "angle": {
             "TRUCK": 1,
-            "LOCATION": 1
+            "LOCATION": 5
           },
           "with": [
             "TRUCK"
           ],
           "setup": "truck-fence",
-          "shot": "head-on from the opening in the wall: the truck at high speed, enormous dust plume, the blast wall in the foreground",
-          "motion": "the truck charges toward the camera at full speed, bouncing, dust filling the frame behind it",
-          "must": [
-            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base",
-            "exactly two barrier trucks parked nose to tail across the opening in the wall"
-          ]
+          "shot": "from the road outside, looking back toward the base: the truck roaring past the camera toward the wall, the two barrier trucks and the tower ahead of it, a huge dust plume",
+          "motion": "the truck thunders past the camera toward the barrier, dust filling the frame",
+          "must": []
         },
         {
           "mode": "video",
@@ -815,19 +801,18 @@
       "shots": [
         {
           "mode": "video",
-          "set": "TOWER",
+          "set": "LOCATION",
           "angle": {
-            "TOWER": 2
+            "TOWER": 2,
+            "LOCATION": 3
           },
           "with": [
             "TRUCK"
           ],
           "setup": "truck-close",
-          "shot": "from the tower over the parapet: the truck enormous and very close beyond the wall, its steel front filling most of the frame, dust everywhere",
+          "shot": "from the top of the tower looking down over the parapet: the truck enormous, almost at the barrier trucks below, its steel front filling most of the frame, dust everywhere",
           "motion": "the truck rushes at the wall, filling more and more of the frame",
-          "must": [
-            "the bomb truck outside the wall on the road beyond the two barrier trucks, not inside the base"
-          ]
+          "must": []
         },
         {
           "mode": "video",
@@ -884,14 +869,14 @@
           "mode": "video",
           "set": "LOCATION",
           "setup": "fireball",
-          "shot": "a colossal orange-white explosion erupting on the road just short of the wall, a towering fireball filling the frame, a ring of dust racing outward",
+          "shot": "from the top of the tower: a colossal orange-white explosion erupting on the road just short of the barrier trucks, a towering fireball filling the frame, a ring of dust racing outward",
           "motion": "the fireball blooms outward and a shock wave of dust races toward the camera",
           "in": "flash",
           "transform": {
             "LOCATION": "hidden behind a colossal fireball and dust cloud at the gate"
           },
           "angle": {
-            "LOCATION": 1
+            "LOCATION": 3
           },
           "must": [
             "exactly two barrier trucks parked nose to tail across the opening in the wall"

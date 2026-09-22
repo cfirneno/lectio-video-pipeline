@@ -277,12 +277,19 @@ if (missingMasters.length) { console.error(`[scene] not in the bible yet: ${miss
 
 const byPicture = new Map(); // setup name -> the first shot that defines it
 for (const s of shots) { const k = s.setup || s.id; if (!byPicture.has(k)) byPicture.set(k, s); s.picture = `still_${k}.jpg`; }
+let judged = 0, failedEarly = 0;
 await pool([...byPicture.values()], 4, async (s) => {
+  // Circuit breaker: when the first pictures mostly fail, the rules and the masters disagree;
+  // stop instead of paying for thirty pictures that cannot pass.
+  if (judged >= 6 && failedEarly >= 4) return;
   const { refs, legend, check } = refsFor(s);
   const prompt = shotPrompt(s, legend);
   const key = hash(prompt, refs.map((f) => readJson(`${f}.key`, null)), IMAGE_MODEL);
-  if (!(await makeImage({ modelName: IMAGE_MODEL, file: out(s.picture), key, prompt, refs, check, geography: bible.geography || '', transform: transformOf(s), must: s.must || [], attempts: 3, charge: money.charge, log, warn }))) report.fallbacks.push(`${s.id}: image failed`);
+  if (!(await makeImage({ modelName: IMAGE_MODEL, file: out(s.picture), key, prompt, refs, check, geography: bible.geography || '', transform: transformOf(s), must: s.must || [], attempts: 2, charge: money.charge, log, warn }))) report.fallbacks.push(`${s.id}: image failed`);
+  const v = readJson(`${out(s.picture)}.check.json`, null);
+  judged++; if (v && !v.ok) failedEarly++;
 });
+if (judged >= 6 && failedEarly >= 4) { console.error(`[scene] STOPPED EARLY: ${failedEarly} of the first ${judged} pictures failed continuity. The rules and the bible masters disagree - fix the masters or the rules before spending more.`); process.exit(3); }
 for (const s of shots) if (!has(out(s.picture))) {
   const prev = shots[shots.indexOf(s) - 1];
   if (prev && has(out(prev.picture))) { s.picture = prev.picture; report.fallbacks.push(`${s.id}: no picture; reused ${prev.id}`); } else s.picture = null;
